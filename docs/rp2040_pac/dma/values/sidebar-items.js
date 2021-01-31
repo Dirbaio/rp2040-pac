@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["DataSize","DMA Channel 5 Control and Status"],["SniffCtrlCalc","Sniffer Control"],["TreqSel","DMA Channel 3 Control and Status"]]});

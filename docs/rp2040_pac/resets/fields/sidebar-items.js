@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Peripherals","Reset done. If a bit is set then a reset done signal has been returned by the peripheral. This indicates that the peripheral's registers are ready to be accessed."],["Wdsel","Watchdog select. If a bit is set then the watchdog will reset this peripheral when the watchdog fires."]]});
