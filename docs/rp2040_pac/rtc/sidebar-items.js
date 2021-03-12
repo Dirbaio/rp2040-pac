@@ -1,1 +1,0 @@
-initSidebarItems({"mod":[["fields",""]],"struct":[["Rtc","Register block to control RTC"]]});

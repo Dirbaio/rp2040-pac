@@ -1,1 +1,0 @@
-initSidebarItems({"mod":[["fields",""]],"struct":[["PadsBank0",""]]});

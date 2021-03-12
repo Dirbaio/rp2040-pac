@@ -1,1 +1,1 @@
-initSidebarItems({"enum":[["Primask","All exceptions with configurable priority are ..."]],"fn":[["read","Reads the CPU register"]]});
+initSidebarItems({"enum":[["Primask","All exceptions with configurable priority are …"]],"fn":[["read","Reads the CPU register"]]});

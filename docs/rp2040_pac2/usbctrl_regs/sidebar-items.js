@@ -1,0 +1,1 @@
+initSidebarItems({"mod":[["regs",""]],"struct":[["UsbctrlRegs","USB FS/LS controller device registers"]]});

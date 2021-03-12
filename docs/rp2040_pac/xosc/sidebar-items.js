@@ -1,1 +1,0 @@
-initSidebarItems({"mod":[["fields",""],["values",""]],"struct":[["Xosc","Controls the crystal oscillator"]]});

@@ -1,1 +1,0 @@
-initSidebarItems({"mod":[["fields",""],["values",""]],"struct":[["I2c0","DW_apb_i2c address block"]]});

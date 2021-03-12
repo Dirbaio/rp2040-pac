@@ -1,1 +1,0 @@
-initSidebarItems({"mod":[["fields",""]],"struct":[["Tbman","Testbench manager. Allows the programmer to know what platform their software is running on."]]});

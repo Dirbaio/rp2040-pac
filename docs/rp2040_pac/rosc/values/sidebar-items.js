@@ -1,1 +1,0 @@
-initSidebarItems({"struct":[["CtrlEnable","Ring Oscillator control"],["CtrlFreqRange","Ring Oscillator control"],["DivDiv","Controls the output divider"],["Passwd","For a detailed description see freqa register"]]});

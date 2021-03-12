@@ -1,1 +1,0 @@
-initSidebarItems({"mod":[["fields",""],["values",""]],"struct":[["Dma","DMA with separate read and write masters"]]});
