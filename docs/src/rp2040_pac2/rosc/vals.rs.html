@@ -34,83 +34,35 @@
 <span id="31">31</span>
 <span id="32">32</span>
 <span id="33">33</span>
-<span id="34">34</span>
-<span id="35">35</span>
-<span id="36">36</span>
-<span id="37">37</span>
-<span id="38">38</span>
-<span id="39">39</span>
-<span id="40">40</span>
-<span id="41">41</span>
-<span id="42">42</span>
-<span id="43">43</span>
-<span id="44">44</span>
-<span id="45">45</span>
-<span id="46">46</span>
-<span id="47">47</span>
-<span id="48">48</span>
-<span id="49">49</span>
-<span id="50">50</span>
-<span id="51">51</span>
-<span id="52">52</span>
-<span id="53">53</span>
-<span id="54">54</span>
-<span id="55">55</span>
-<span id="56">56</span>
-<span id="57">57</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">generic</span>::<span class="kw-2">*</span>;
-<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Ring Oscillator control&quot;</span>]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CtrlEnable</span>(<span class="ident">u16</span>);
-<span class="kw">impl</span> <span class="ident">CtrlEnable</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">to_bits</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u16</span> {
-        <span class="self">self</span>.<span class="number">0</span>
-    }
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">from_bits</span>(<span class="ident">val</span>: <span class="ident">u16</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CtrlEnable</span> {
-        <span class="ident">CtrlEnable</span>(<span class="ident">val</span>)
-    }
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DISABLE</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x0d1e</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ENABLE</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x0fab</span>);
-}
 <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Controls the output divider&quot;</span>]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DivDiv</span>(<span class="ident">u16</span>);
-<span class="kw">impl</span> <span class="ident">DivDiv</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">to_bits</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u16</span> {
-        <span class="self">self</span>.<span class="number">0</span>
-    }
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">from_bits</span>(<span class="ident">val</span>: <span class="ident">u16</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DivDiv</span> {
-        <span class="ident">DivDiv</span>(<span class="ident">val</span>)
-    }
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Div</span>(<span class="kw">pub</span> <span class="ident">u16</span>);
+<span class="kw">impl</span> <span class="ident">Div</span> {
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PASS</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x0aa0</span>);
+}
+<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Ring Oscillator control&quot;</span>]</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CtrlEnable</span>(<span class="kw">pub</span> <span class="ident">u16</span>);
+<span class="kw">impl</span> <span class="ident">CtrlEnable</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DISABLE</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x0d1e</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ENABLE</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x0fab</span>);
 }
 <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The FREQA &amp; FREQB registers control the frequency by controlling the drive strength of each stage The drive strength has 4 levels determined by the number of bits set Increasing the number of bits set increases the drive strength and increases the oscillation frequency 0 bits set is the default drive strength 1 bit set doubles the drive strength 2 bits set triples drive strength 3 bits set quadruples drive strength&quot;</span>]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Passwd</span>(<span class="ident">u16</span>);
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Passwd</span>(<span class="kw">pub</span> <span class="ident">u16</span>);
 <span class="kw">impl</span> <span class="ident">Passwd</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">to_bits</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u16</span> {
-        <span class="self">self</span>.<span class="number">0</span>
-    }
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">from_bits</span>(<span class="ident">val</span>: <span class="ident">u16</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Passwd</span> {
-        <span class="ident">Passwd</span>(<span class="ident">val</span>)
-    }
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PASS</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x9696</span>);
 }
 <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Ring Oscillator control&quot;</span>]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CtrlFreqRange</span>(<span class="ident">u16</span>);
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CtrlFreqRange</span>(<span class="kw">pub</span> <span class="ident">u16</span>);
 <span class="kw">impl</span> <span class="ident">CtrlFreqRange</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">to_bits</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u16</span> {
-        <span class="self">self</span>.<span class="number">0</span>
-    }
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">from_bits</span>(<span class="ident">val</span>: <span class="ident">u16</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CtrlFreqRange</span> {
-        <span class="ident">CtrlFreqRange</span>(<span class="ident">val</span>)
-    }
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LOW</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x0fa4</span>);
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MEDIUM</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x0fa5</span>);
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">HIGH</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x0fa7</span>);

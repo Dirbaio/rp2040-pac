@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["regs",""],["vals",""]],"struct":[["IoQspi",""]]});
+initSidebarItems({"mod":[["regs",""],["vals",""]]});

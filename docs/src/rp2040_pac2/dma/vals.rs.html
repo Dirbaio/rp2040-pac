@@ -45,74 +45,13 @@
 <span id="42">42</span>
 <span id="43">43</span>
 <span id="44">44</span>
-<span id="45">45</span>
-<span id="46">46</span>
-<span id="47">47</span>
-<span id="48">48</span>
-<span id="49">49</span>
-<span id="50">50</span>
-<span id="51">51</span>
-<span id="52">52</span>
-<span id="53">53</span>
-<span id="54">54</span>
-<span id="55">55</span>
-<span id="56">56</span>
-<span id="57">57</span>
-<span id="58">58</span>
-<span id="59">59</span>
-<span id="60">60</span>
-<span id="61">61</span>
-<span id="62">62</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">generic</span>::<span class="kw-2">*</span>;
-<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;DMA Channel 1 Control and Status&quot;</span>]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">TreqSel</span>(<span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">TreqSel</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">to_bits</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u8</span> {
-        <span class="self">self</span>.<span class="number">0</span>
-    }
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">from_bits</span>(<span class="ident">val</span>: <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TreqSel</span> {
-        <span class="ident">TreqSel</span>(<span class="ident">val</span>)
-    }
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Select Timer 0 as TREQ&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TIMER0</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x3b</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Select Timer 1 as TREQ&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TIMER1</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x3c</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Select Timer 2 as TREQ (Optional)&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TIMER2</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x3d</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Select Timer 3 as TREQ (Optional)&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TIMER3</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x3e</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Permanent request, for unpaced transfers.&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PERMANENT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x3f</span>);
-}
-<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;DMA Channel 1 Control and Status&quot;</span>]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DataSize</span>(<span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">DataSize</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">to_bits</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u8</span> {
-        <span class="self">self</span>.<span class="number">0</span>
-    }
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">from_bits</span>(<span class="ident">val</span>: <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DataSize</span> {
-        <span class="ident">DataSize</span>(<span class="ident">val</span>)
-    }
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIZE_BYTE</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIZE_HALFWORD</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIZE_WORD</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
-}
 <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Sniffer Control&quot;</span>]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SniffCtrlCalc</span>(<span class="ident">u8</span>);
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SniffCtrlCalc</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
 <span class="kw">impl</span> <span class="ident">SniffCtrlCalc</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">to_bits</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u8</span> {
-        <span class="self">self</span>.<span class="number">0</span>
-    }
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">from_bits</span>(<span class="ident">val</span>: <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SniffCtrlCalc</span> {
-        <span class="ident">SniffCtrlCalc</span>(<span class="ident">val</span>)
-    }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Calculate a CRC-32 (IEEE802.3 polynomial)&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CRC32</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Calculate a CRC-32 (IEEE802.3 polynomial) with bit reversed data&quot;</span>]</span>
@@ -125,6 +64,31 @@
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EVEN</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x0e</span>);
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Calculate a simple 32-bit checksum (addition with a 32 bit accumulator)&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SUM</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x0f</span>);
+}
+<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;DMA Channel 8 Control and Status&quot;</span>]</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DataSize</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">DataSize</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIZE_BYTE</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIZE_HALFWORD</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIZE_WORD</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
+}
+<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;DMA Channel 8 Control and Status&quot;</span>]</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">TreqSel</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">TreqSel</span> {
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Select Timer 0 as TREQ&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TIMER0</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x3b</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Select Timer 1 as TREQ&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TIMER1</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x3c</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Select Timer 2 as TREQ (Optional)&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TIMER2</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x3d</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Select Timer 3 as TREQ (Optional)&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TIMER3</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x3e</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Permanent request, for unpaced transfers.&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PERMANENT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x3f</span>);
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><section class="footer"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="rp2040_pac2" data-search-js="../../../search-index.js"></div>

@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["regs",""]],"struct":[["PadsQspi",""]]});
+initSidebarItems({"mod":[["regs",""],["vals",""]]});

@@ -58,67 +58,61 @@
 <span id="55">55</span>
 <span id="56">56</span>
 <span id="57">57</span>
-<span id="58">58</span>
-<span id="59">59</span>
-<span id="60">60</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">generic</span>::<span class="kw-2">*</span>;
 <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Register block to control RTC&quot;</span>]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Rtc</span>(<span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u8</span>);
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Rtc</span>(<span class="kw">pub</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u8</span>);
 <span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">Rtc</span> {}
 <span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">Rtc</span> {}
 <span class="kw">impl</span> <span class="ident">Rtc</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">from_ptr</span>(<span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">Self</span>(<span class="ident">ptr</span>)
-    }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Divider minus 1 for the 1 second counter. Safe to change the value when RTC is not enabled.&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clkdiv_m1</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">ClkdivM1</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">0usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">0usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;RTC setup register 0&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">setup_0</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">Setup0</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">4usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">4usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;RTC setup register 1&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">setup_1</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">Setup1</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">8usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">8usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;RTC Control and status&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ctrl</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">Ctrl</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">12usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">12usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Interrupt setup register 0&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">irq_setup_0</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">IrqSetup0</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">16usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">16usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Interrupt setup register 1&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">irq_setup_1</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">IrqSetup1</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">20usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">20usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;RTC register 1.&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">rtc_1</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">Rtc1</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">24usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">24usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;RTC register 0 Read this before RTC 1!&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">rtc_0</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">Rtc0</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">28usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">28usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Raw Interrupts&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">intr</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">Intr</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">32usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">32usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Interrupt Enable&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">inte</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">Inte</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">36usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">36usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Interrupt Force&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">intf</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">Intf</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">40usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">40usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Interrupt status after masking &amp; forcing&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ints</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">Ints</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">44usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">44usize</span>)) }
     }
 }
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">regs</span>;

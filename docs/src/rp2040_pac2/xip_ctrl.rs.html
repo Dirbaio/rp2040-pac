@@ -42,51 +42,45 @@
 <span id="39">39</span>
 <span id="40">40</span>
 <span id="41">41</span>
-<span id="42">42</span>
-<span id="43">43</span>
-<span id="44">44</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">generic</span>::<span class="kw-2">*</span>;
 <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;QSPI flash execute-in-place block&quot;</span>]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XipCtrl</span>(<span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u8</span>);
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XipCtrl</span>(<span class="kw">pub</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u8</span>);
 <span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">XipCtrl</span> {}
 <span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">XipCtrl</span> {}
 <span class="kw">impl</span> <span class="ident">XipCtrl</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">from_ptr</span>(<span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">Self</span>(<span class="ident">ptr</span>)
-    }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Cache control&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ctrl</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">Ctrl</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">0usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">0usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Cache Flush control&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">flush</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">Flush</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">4usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">4usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Cache Status&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">stat</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">Stat</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">8usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">8usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Cache Hit counter A 32 bit saturating counter that increments upon each cache hit, i.e. when an XIP access is serviced directly from cached data. Write any value to clear.&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ctr_hit</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">u32</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">12usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">12usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Cache Access counter A 32 bit saturating counter that increments upon each XIP access, whether the cache is hit or not. This includes noncacheable accesses. Write any value to clear.&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ctr_acc</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">u32</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">16usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">16usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;FIFO stream address&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">stream_addr</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">StreamAddr</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">20usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">20usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;FIFO stream control&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">stream_ctr</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">StreamCtr</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">24usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">24usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;FIFO stream data Streamed data is buffered here, for retrieval by the system DMA. This FIFO can also be accessed via the XIP_AUX slave, to avoid exposing the DMA to bus stalls caused by other XIP traffic.&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">stream_fifo</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">u32</span>, <span class="ident">R</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">28usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">28usize</span>)) }
     }
 }
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">regs</span>;

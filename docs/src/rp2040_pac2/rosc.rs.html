@@ -46,54 +46,48 @@
 <span id="43">43</span>
 <span id="44">44</span>
 <span id="45">45</span>
-<span id="46">46</span>
-<span id="47">47</span>
-<span id="48">48</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">generic</span>::<span class="kw-2">*</span>;
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Rosc</span>(<span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u8</span>);
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Rosc</span>(<span class="kw">pub</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u8</span>);
 <span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">Rosc</span> {}
 <span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">Rosc</span> {}
 <span class="kw">impl</span> <span class="ident">Rosc</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">from_ptr</span>(<span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">Self</span>(<span class="ident">ptr</span>)
-    }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Ring Oscillator control&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ctrl</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">Ctrl</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">0usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">0usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The FREQA &amp; FREQB registers control the frequency by controlling the drive strength of each stage The drive strength has 4 levels determined by the number of bits set Increasing the number of bits set increases the drive strength and increases the oscillation frequency 0 bits set is the default drive strength 1 bit set doubles the drive strength 2 bits set triples drive strength 3 bits set quadruples drive strength&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">freqa</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">Freqa</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">4usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">4usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;For a detailed description see freqa register&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">freqb</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">Freqb</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">8usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">8usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Ring Oscillator pause control This is used to save power by pausing the ROSC On power-up this field is initialised to WAKE An invalid write will also select WAKE Warning: setup the irq before selecting dormant mode&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">dormant</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">u32</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">12usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">12usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Controls the output divider&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">div</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">Div</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">16usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">16usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Controls the phase shifted output&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">phase</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">Phase</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">20usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">20usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Ring Oscillator Status&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">status</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">Status</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">24usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">24usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;This just reads the state of the oscillator output so randomness is compromised if the ring oscillator is stopped or run at a harmonic of the bus frequency&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">randombit</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">Randombit</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">28usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">28usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;A down counter running at the ROSC frequency which counts to zero and stops. To start the counter write a non-zero value. Can be used for short software pauses when setting up time sensitive hardware.&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">count</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">Count</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">32usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">32usize</span>)) }
     }
 }
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">regs</span>;

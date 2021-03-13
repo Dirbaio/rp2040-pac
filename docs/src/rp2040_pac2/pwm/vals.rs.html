@@ -16,25 +16,13 @@
 <span id="13">13</span>
 <span id="14">14</span>
 <span id="15">15</span>
-<span id="16">16</span>
-<span id="17">17</span>
-<span id="18">18</span>
-<span id="19">19</span>
-<span id="20">20</span>
-<span id="21">21</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">generic</span>::<span class="kw-2">*</span>;
 <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Control and status register&quot;</span>]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Divmode</span>(<span class="ident">u8</span>);
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Divmode</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
 <span class="kw">impl</span> <span class="ident">Divmode</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">to_bits</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u8</span> {
-        <span class="self">self</span>.<span class="number">0</span>
-    }
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">from_bits</span>(<span class="ident">val</span>: <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Divmode</span> {
-        <span class="ident">Divmode</span>(<span class="ident">val</span>)
-    }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Free-running counting at rate dictated by fractional divider&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DIV</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Fractional divider operation is gated by the PWM B pin.&quot;</span>]</span>

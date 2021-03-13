@@ -1,1 +1,0 @@
-initSidebarItems({"mod":[["regs",""],["vals",""]],"struct":[["Irq",""],["Pio0","Programmable IO block"],["StateMachine",""]]});

@@ -21,30 +21,24 @@
 <span id="18">18</span>
 <span id="19">19</span>
 <span id="20">20</span>
-<span id="21">21</span>
-<span id="22">22</span>
-<span id="23">23</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">generic</span>::<span class="kw-2">*</span>;
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Resets</span>(<span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u8</span>);
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Resets</span>(<span class="kw">pub</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u8</span>);
 <span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">Resets</span> {}
 <span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">Resets</span> {}
 <span class="kw">impl</span> <span class="ident">Resets</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">from_ptr</span>(<span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">Self</span>(<span class="ident">ptr</span>)
-    }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Reset control. If a bit is set it means the peripheral is in reset. 0 means the peripheral&#39;s reset is deasserted.&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">reset</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">Peripherals</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">0usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">0usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Watchdog select. If a bit is set then the watchdog will reset this peripheral when the watchdog fires.&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">wdsel</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">Wdsel</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">4usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">4usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Reset done. If a bit is set then a reset done signal has been returned by the peripheral. This indicates that the peripheral&#39;s registers are ready to be accessed.&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">reset_done</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">Peripherals</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">8usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">8usize</span>)) }
     }
 }
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">regs</span>;

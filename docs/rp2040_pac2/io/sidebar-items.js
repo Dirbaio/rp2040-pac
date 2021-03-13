@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["vals",""]]});
+initSidebarItems({"mod":[["regs",""],["vals",""]],"struct":[["Gpio",""],["Int",""],["Io",""]]});

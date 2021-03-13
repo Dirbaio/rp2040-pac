@@ -204,212 +204,206 @@
 <span id="201">201</span>
 <span id="202">202</span>
 <span id="203">203</span>
-<span id="204">204</span>
-<span id="205">205</span>
-<span id="206">206</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">generic</span>::<span class="kw-2">*</span>;
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Clocks</span>(<span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u8</span>);
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Clocks</span>(<span class="kw">pub</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u8</span>);
 <span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">Clocks</span> {}
 <span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">Clocks</span> {}
 <span class="kw">impl</span> <span class="ident">Clocks</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">from_ptr</span>(<span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">Self</span>(<span class="ident">ptr</span>)
-    }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Clock control, can be changed on-the-fly (except for auxsrc)&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clk_gpout0_ctrl</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">ClkGpout0Ctrl</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">0usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">0usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Clock divisor, can be changed on-the-fly&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clk_gpout0_div</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">ClkGpout0Div</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">4usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">4usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Indicates which src is currently selected (one-hot)&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clk_gpout0_selected</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">u32</span>, <span class="ident">R</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">8usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">8usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Clock control, can be changed on-the-fly (except for auxsrc)&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clk_gpout1_ctrl</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">ClkGpout1Ctrl</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">12usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">12usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Clock divisor, can be changed on-the-fly&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clk_gpout1_div</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">ClkGpout1Div</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">16usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">16usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Indicates which src is currently selected (one-hot)&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clk_gpout1_selected</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">u32</span>, <span class="ident">R</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">20usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">20usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Clock control, can be changed on-the-fly (except for auxsrc)&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clk_gpout2_ctrl</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">ClkGpout2Ctrl</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">24usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">24usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Clock divisor, can be changed on-the-fly&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clk_gpout2_div</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">ClkGpout2Div</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">28usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">28usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Indicates which src is currently selected (one-hot)&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clk_gpout2_selected</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">u32</span>, <span class="ident">R</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">32usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">32usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Clock control, can be changed on-the-fly (except for auxsrc)&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clk_gpout3_ctrl</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">ClkGpout3Ctrl</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">36usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">36usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Clock divisor, can be changed on-the-fly&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clk_gpout3_div</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">ClkGpout3Div</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">40usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">40usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Indicates which src is currently selected (one-hot)&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clk_gpout3_selected</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">u32</span>, <span class="ident">R</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">44usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">44usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Clock control, can be changed on-the-fly (except for auxsrc)&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clk_ref_ctrl</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">ClkRefCtrl</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">48usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">48usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Clock divisor, can be changed on-the-fly&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clk_ref_div</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">ClkRefDiv</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">52usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">52usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Indicates which src is currently selected (one-hot)&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clk_ref_selected</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">u32</span>, <span class="ident">R</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">56usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">56usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Clock control, can be changed on-the-fly (except for auxsrc)&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clk_sys_ctrl</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">ClkSysCtrl</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">60usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">60usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Clock divisor, can be changed on-the-fly&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clk_sys_div</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">ClkSysDiv</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">64usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">64usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Indicates which src is currently selected (one-hot)&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clk_sys_selected</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">u32</span>, <span class="ident">R</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">68usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">68usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Clock control, can be changed on-the-fly (except for auxsrc)&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clk_peri_ctrl</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">ClkPeriCtrl</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">72usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">72usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Indicates which src is currently selected (one-hot)&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clk_peri_selected</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">u32</span>, <span class="ident">R</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">80usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">80usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Clock control, can be changed on-the-fly (except for auxsrc)&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clk_usb_ctrl</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">ClkUsbCtrl</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">84usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">84usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Clock divisor, can be changed on-the-fly&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clk_usb_div</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">ClkUsbDiv</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">88usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">88usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Indicates which src is currently selected (one-hot)&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clk_usb_selected</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">u32</span>, <span class="ident">R</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">92usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">92usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Clock control, can be changed on-the-fly (except for auxsrc)&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clk_adc_ctrl</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">ClkAdcCtrl</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">96usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">96usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Clock divisor, can be changed on-the-fly&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clk_adc_div</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">ClkAdcDiv</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">100usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">100usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Indicates which src is currently selected (one-hot)&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clk_adc_selected</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">u32</span>, <span class="ident">R</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">104usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">104usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Clock control, can be changed on-the-fly (except for auxsrc)&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clk_rtc_ctrl</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">ClkRtcCtrl</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">108usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">108usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Clock divisor, can be changed on-the-fly&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clk_rtc_div</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">ClkRtcDiv</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">112usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">112usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Indicates which src is currently selected (one-hot)&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clk_rtc_selected</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">u32</span>, <span class="ident">R</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">116usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">116usize</span>)) }
     }
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clk_sys_resus_ctrl</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">ClkSysResusCtrl</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">120usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">120usize</span>)) }
     }
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clk_sys_resus_status</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">ClkSysResusStatus</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">124usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">124usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Reference clock frequency in kHz&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">fc0_ref_khz</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">Fc0RefKhz</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">128usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">128usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Minimum pass frequency in kHz. This is optional. Set to 0 if you are not using the pass/fail flags&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">fc0_min_khz</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">Fc0MinKhz</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">132usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">132usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Maximum pass frequency in kHz. This is optional. Set to 0x1ffffff if you are not using the pass/fail flags&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">fc0_max_khz</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">Fc0MaxKhz</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">136usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">136usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Delays the start of frequency counting to allow the mux to settle Delay is measured in multiples of the reference clock period&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">fc0_delay</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">Fc0Delay</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">140usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">140usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The test interval is 0.98us * 2**interval, but let&#39;s call it 1us * 2**interval The default gives a test interval of 250us&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">fc0_interval</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">Fc0Interval</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">144usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">144usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Clock sent to frequency counter, set to 0 when not required Writing to this register initiates the frequency count&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">fc0_src</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">Fc0Src</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">148usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">148usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Frequency counter status&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">fc0_status</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">Fc0Status</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">152usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">152usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Result of frequency measurement, only valid when status_done=1&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">fc0_result</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">Fc0Result</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">156usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">156usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;enable clock in wake mode&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">wake_en0</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">WakeEn0</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">160usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">160usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;enable clock in wake mode&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">wake_en1</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">WakeEn1</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">164usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">164usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;enable clock in sleep mode&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">sleep_en0</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">SleepEn0</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">168usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">168usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;enable clock in sleep mode&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">sleep_en1</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">SleepEn1</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">172usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">172usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;indicates the state of the clock enable&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">enabled0</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">Enabled0</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">176usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">176usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;indicates the state of the clock enable&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">enabled1</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">Enabled1</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">180usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">180usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Raw Interrupts&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">intr</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">Intr</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">184usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">184usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Interrupt Enable&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">inte</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">Inte</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">188usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">188usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Interrupt Force&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">intf</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">Intf</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">192usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">192usize</span>)) }
     }
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Interrupt status after masking &amp; forcing&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ints</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Reg</span><span class="op">&lt;</span><span class="ident">regs</span>::<span class="ident">Ints</span>, <span class="ident">RW</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">196usize</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">Reg</span>::<span class="ident">from_ptr</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">add</span>(<span class="number">196usize</span>)) }
     }
 }
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">regs</span>;
