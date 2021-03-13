@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["regs",""]],"struct":[["Uart0",""]]});
+initSidebarItems({"mod":[["regs",""]],"struct":[["Uart",""]]});
