@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["SmExecctrlStatusSel","Execution/behavioural settings for state machine 0"]]});
+initSidebarItems({"struct":[["SmExecctrlStatusSel","Execution/behavioural settings for state machine 1"]]});

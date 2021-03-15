@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["GpioCtrl","GPIO control including function select and overrides."],["GpioStatus","GPIO status"],["Int","Interrupt Enable for proc0"]]});
+initSidebarItems({"struct":[["GpioCtrl","GPIO control including function select and overrides."],["GpioStatus","GPIO status"],["Int","Interrupt status after masking & forcing for proc1"]]});

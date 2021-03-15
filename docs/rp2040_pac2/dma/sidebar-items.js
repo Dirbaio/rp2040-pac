@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["regs",""],["vals",""]],"struct":[["Dma","DMA with separate read and write masters"]]});
+initSidebarItems({"mod":[["regs",""],["vals",""]],"struct":[["Channel",""],["Dma","DMA with separate read and write masters"]]});

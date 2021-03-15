@@ -534,154 +534,17 @@
 <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Inover</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">Inover</span> {
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;don&#39;t invert the peri input&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NORMAL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;invert the peri input&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">INVERT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive peri input low&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LOW</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive peri input high&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">HIGH</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
-}
-<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Oeover</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">Oeover</span> {
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive output enable from peripheral signal selected by funcsel&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NORMAL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive output enable from inverse of peripheral signal selected by funcsel&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">INVERT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;disable output&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DISABLE</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;enable output&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ENABLE</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
-}
-<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Gpio9CtrlFuncsel</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">Gpio9CtrlFuncsel</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SPI1_SS_N</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">UART1_RX</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">I2C0_SCL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PWM_B_4</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x04</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIO_9</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO0_9</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x06</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO1_9</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x07</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">USB_MUXING_EXTPHY_VP</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x08</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">USB_MUXING_OVERCURR_DETECT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x09</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NULL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x1f</span>);
-}
-<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Gpio14CtrlFuncsel</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">Gpio14CtrlFuncsel</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SPI1_SCLK</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">UART0_CTS</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">I2C1_SDA</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PWM_A_7</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x04</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIO_14</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO0_14</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x06</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO1_14</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x07</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">USB_MUXING_EXTPHY_VMO</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x08</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">USB_MUXING_VBUS_EN</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x09</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NULL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x1f</span>);
-}
-<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Gpio27CtrlFuncsel</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">Gpio27CtrlFuncsel</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SPI1_TX</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Gpio23CtrlFuncsel</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">Gpio23CtrlFuncsel</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SPI0_TX</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">UART1_RTS</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">I2C1_SCL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PWM_B_5</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x04</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIO_27</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO0_27</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x06</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO1_27</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x07</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">USB_MUXING_OVERCURR_DETECT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x09</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NULL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x1f</span>);
-}
-<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Gpio11CtrlFuncsel</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">Gpio11CtrlFuncsel</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SPI1_TX</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">UART1_RTS</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">I2C1_SCL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PWM_B_5</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x04</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIO_11</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO0_11</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x06</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO1_11</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x07</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">USB_MUXING_EXTPHY_SUSPND</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x08</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PWM_B_3</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x04</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIO_23</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO0_23</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x06</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO1_23</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x07</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLOCKS_GPOUT_1</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x08</span>);
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">USB_MUXING_VBUS_EN</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x09</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NULL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x1f</span>);
-}
-<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Gpio26CtrlFuncsel</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">Gpio26CtrlFuncsel</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SPI1_SCLK</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">UART1_CTS</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">I2C1_SDA</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PWM_A_5</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x04</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIO_26</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO0_26</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x06</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO1_26</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x07</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">USB_MUXING_VBUS_EN</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x09</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NULL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x1f</span>);
-}
-<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Gpio5CtrlFuncsel</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">Gpio5CtrlFuncsel</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SPI0_SS_N</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">UART1_RX</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">I2C0_SCL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PWM_B_2</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x04</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIO_5</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO0_5</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x06</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO1_5</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x07</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">USB_MUXING_VBUS_EN</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x09</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NULL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x1f</span>);
-}
-<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Gpio22CtrlFuncsel</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">Gpio22CtrlFuncsel</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SPI0_SCLK</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">UART1_CTS</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">I2C1_SDA</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PWM_A_3</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x04</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIO_22</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO0_22</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x06</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO1_22</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x07</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLOCKS_GPIN_1</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x08</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">USB_MUXING_VBUS_DETECT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x09</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NULL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x1f</span>);
-}
-<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Gpio10CtrlFuncsel</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">Gpio10CtrlFuncsel</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SPI1_SCLK</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">UART1_CTS</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">I2C1_SDA</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PWM_A_5</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x04</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIO_10</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO0_10</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x06</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO1_10</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x07</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">USB_MUXING_EXTPHY_VM</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x08</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">USB_MUXING_VBUS_DETECT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x09</span>);
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NULL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x1f</span>);
 }
 <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
@@ -703,63 +566,109 @@
 <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Gpio17CtrlFuncsel</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">Gpio17CtrlFuncsel</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SPI0_SS_N</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">UART0_RX</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">I2C0_SCL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PWM_B_0</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x04</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIO_17</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO0_17</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x06</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO1_17</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x07</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">USB_MUXING_VBUS_EN</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x09</span>);
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Gpio24CtrlFuncsel</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">Gpio24CtrlFuncsel</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SPI1_RX</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">UART1_TX</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">I2C0_SDA</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PWM_A_4</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x04</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIO_24</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO0_24</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x06</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO1_24</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x07</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLOCKS_GPOUT_2</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x08</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">USB_MUXING_OVERCURR_DETECT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x09</span>);
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NULL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x1f</span>);
 }
 <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Gpio19CtrlFuncsel</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">Gpio19CtrlFuncsel</span> {
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Gpio7CtrlFuncsel</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">Gpio7CtrlFuncsel</span> {
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SPI0_TX</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">UART0_RTS</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">UART1_RTS</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">I2C1_SCL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PWM_B_1</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x04</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIO_19</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO0_19</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x06</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO1_19</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x07</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PWM_B_3</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x04</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIO_7</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO0_7</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x06</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO1_7</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x07</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">USB_MUXING_EXTPHY_OE_N</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x08</span>);
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">USB_MUXING_VBUS_DETECT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x09</span>);
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NULL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x1f</span>);
 }
 <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Gpio23CtrlFuncsel</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">Gpio23CtrlFuncsel</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SPI0_TX</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">UART1_RTS</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">I2C1_SCL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PWM_B_3</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x04</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIO_23</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO0_23</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x06</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO1_23</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x07</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLOCKS_GPOUT_1</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x08</span>);
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Gpio29CtrlFuncsel</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">Gpio29CtrlFuncsel</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SPI1_SS_N</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">UART0_RX</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">I2C0_SCL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PWM_B_6</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x04</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIO_29</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO0_29</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x06</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO1_29</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x07</span>);
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">USB_MUXING_VBUS_EN</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x09</span>);
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NULL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x1f</span>);
 }
 <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Gpio21CtrlFuncsel</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">Gpio21CtrlFuncsel</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SPI0_SS_N</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">UART1_RX</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">I2C0_SCL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PWM_B_2</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x04</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIO_21</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO0_21</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x06</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO1_21</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x07</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLOCKS_GPOUT_0</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x08</span>);
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Gpio0CtrlFuncsel</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">Gpio0CtrlFuncsel</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">JTAG_TCK</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SPI0_RX</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">UART0_TX</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">I2C0_SDA</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PWM_A_0</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x04</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIO_0</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO0_0</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x06</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO1_0</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x07</span>);
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">USB_MUXING_OVERCURR_DETECT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x09</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NULL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x1f</span>);
+}
+<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Gpio26CtrlFuncsel</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">Gpio26CtrlFuncsel</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SPI1_SCLK</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">UART1_CTS</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">I2C1_SDA</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PWM_A_5</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x04</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIO_26</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO0_26</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x06</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO1_26</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x07</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">USB_MUXING_VBUS_EN</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x09</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NULL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x1f</span>);
+}
+<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Gpio4CtrlFuncsel</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">Gpio4CtrlFuncsel</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SPI0_RX</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">UART1_TX</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">I2C0_SDA</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PWM_A_2</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x04</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIO_4</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO0_4</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x06</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO1_4</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x07</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">USB_MUXING_VBUS_DETECT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x09</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NULL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x1f</span>);
+}
+<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Gpio28CtrlFuncsel</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">Gpio28CtrlFuncsel</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SPI1_RX</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">UART0_TX</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">I2C0_SDA</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PWM_A_6</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x04</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIO_28</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO0_28</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x06</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO1_28</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x07</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">USB_MUXING_VBUS_DETECT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x09</span>);
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NULL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x1f</span>);
 }
 <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
@@ -775,6 +684,52 @@
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO0_15</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x06</span>);
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO1_15</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x07</span>);
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">USB_MUXING_DIGITAL_DP</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x08</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">USB_MUXING_OVERCURR_DETECT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x09</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NULL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x1f</span>);
+}
+<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Oeover</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">Oeover</span> {
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive output enable from peripheral signal selected by funcsel&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NORMAL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive output enable from inverse of peripheral signal selected by funcsel&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">INVERT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;disable output&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DISABLE</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;enable output&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ENABLE</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
+}
+<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Gpio20CtrlFuncsel</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">Gpio20CtrlFuncsel</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SPI0_RX</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">UART1_TX</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">I2C0_SDA</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PWM_A_2</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x04</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIO_20</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO0_20</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x06</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO1_20</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x07</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLOCKS_GPIN_0</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x08</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">USB_MUXING_VBUS_EN</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x09</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NULL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x1f</span>);
+}
+<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Gpio12CtrlFuncsel</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">Gpio12CtrlFuncsel</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SPI1_RX</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">UART0_TX</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">I2C0_SDA</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PWM_A_6</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x04</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIO_12</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO0_12</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x06</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO1_12</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x07</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">USB_MUXING_EXTPHY_SPEED</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x08</span>);
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">USB_MUXING_OVERCURR_DETECT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x09</span>);
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NULL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x1f</span>);
 }
@@ -797,141 +752,63 @@
 <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Gpio20CtrlFuncsel</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">Gpio20CtrlFuncsel</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SPI0_RX</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">UART1_TX</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">I2C0_SDA</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PWM_A_2</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x04</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIO_20</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO0_20</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x06</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO1_20</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x07</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLOCKS_GPIN_0</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x08</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">USB_MUXING_VBUS_EN</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x09</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NULL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x1f</span>);
-}
-<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Gpio4CtrlFuncsel</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">Gpio4CtrlFuncsel</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SPI0_RX</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">UART1_TX</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">I2C0_SDA</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PWM_A_2</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x04</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIO_4</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO0_4</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x06</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO1_4</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x07</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">USB_MUXING_VBUS_DETECT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x09</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NULL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x1f</span>);
-}
-<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Gpio0CtrlFuncsel</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">Gpio0CtrlFuncsel</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">JTAG_TCK</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SPI0_RX</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">UART0_TX</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">I2C0_SDA</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PWM_A_0</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x04</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIO_0</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO0_0</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x06</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO1_0</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x07</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">USB_MUXING_OVERCURR_DETECT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x09</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NULL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x1f</span>);
-}
-<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Gpio16CtrlFuncsel</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">Gpio16CtrlFuncsel</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SPI0_RX</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">UART0_TX</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">I2C0_SDA</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PWM_A_0</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x04</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIO_16</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO0_16</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x06</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO1_16</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x07</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">USB_MUXING_DIGITAL_DM</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x08</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">USB_MUXING_VBUS_DETECT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x09</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NULL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x1f</span>);
-}
-<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Gpio24CtrlFuncsel</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">Gpio24CtrlFuncsel</span> {
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Gpio8CtrlFuncsel</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">Gpio8CtrlFuncsel</span> {
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SPI1_RX</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">UART1_TX</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">I2C0_SDA</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PWM_A_4</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x04</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIO_24</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO0_24</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x06</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO1_24</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x07</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLOCKS_GPOUT_2</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x08</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">USB_MUXING_OVERCURR_DETECT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x09</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NULL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x1f</span>);
-}
-<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Gpio2CtrlFuncsel</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">Gpio2CtrlFuncsel</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">JTAG_TDI</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SPI0_SCLK</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">UART0_CTS</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">I2C1_SDA</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PWM_A_1</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x04</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIO_2</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO0_2</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x06</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO1_2</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x07</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIO_8</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO0_8</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x06</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO1_8</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x07</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">USB_MUXING_EXTPHY_RCV</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x08</span>);
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">USB_MUXING_VBUS_EN</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x09</span>);
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NULL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x1f</span>);
 }
 <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Irqover</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">Irqover</span> {
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;don&#39;t invert the interrupt&quot;</span>]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Inover</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">Inover</span> {
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;don&#39;t invert the peri input&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NORMAL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;invert the interrupt&quot;</span>]</span>
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;invert the peri input&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">INVERT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive interrupt low&quot;</span>]</span>
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive peri input low&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LOW</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive interrupt high&quot;</span>]</span>
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive peri input high&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">HIGH</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
 }
 <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Gpio7CtrlFuncsel</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">Gpio7CtrlFuncsel</span> {
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Gpio3CtrlFuncsel</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">Gpio3CtrlFuncsel</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">JTAG_TDO</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SPI0_TX</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">UART1_RTS</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">UART0_RTS</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">I2C1_SCL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PWM_B_3</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x04</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIO_7</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO0_7</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x06</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO1_7</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x07</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">USB_MUXING_EXTPHY_OE_N</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x08</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">USB_MUXING_VBUS_DETECT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x09</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PWM_B_1</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x04</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIO_3</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO0_3</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x06</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO1_3</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x07</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">USB_MUXING_OVERCURR_DETECT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x09</span>);
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NULL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x1f</span>);
 }
 <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Outover</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">Outover</span> {
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive output from peripheral signal selected by funcsel&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NORMAL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive output from inverse of peripheral signal selected by funcsel&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">INVERT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive output low&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LOW</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive output high&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">HIGH</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Gpio5CtrlFuncsel</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">Gpio5CtrlFuncsel</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SPI0_SS_N</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">UART1_RX</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">I2C0_SCL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PWM_B_2</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x04</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIO_5</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO0_5</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x06</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO1_5</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x07</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">USB_MUXING_VBUS_EN</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x09</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NULL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x1f</span>);
 }
 <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
@@ -952,46 +829,76 @@
 <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Gpio29CtrlFuncsel</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">Gpio29CtrlFuncsel</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SPI1_SS_N</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Gpio22CtrlFuncsel</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">Gpio22CtrlFuncsel</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SPI0_SCLK</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">UART1_CTS</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">I2C1_SDA</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PWM_A_3</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x04</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIO_22</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO0_22</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x06</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO1_22</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x07</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLOCKS_GPIN_1</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x08</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">USB_MUXING_VBUS_DETECT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x09</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NULL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x1f</span>);
+}
+<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Gpio17CtrlFuncsel</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">Gpio17CtrlFuncsel</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SPI0_SS_N</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">UART0_RX</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">I2C0_SCL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PWM_B_6</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x04</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIO_29</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO0_29</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x06</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO1_29</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x07</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PWM_B_0</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x04</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIO_17</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO0_17</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x06</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO1_17</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x07</span>);
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">USB_MUXING_VBUS_EN</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x09</span>);
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NULL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x1f</span>);
 }
 <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Gpio18CtrlFuncsel</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">Gpio18CtrlFuncsel</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SPI0_SCLK</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">UART0_CTS</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">I2C1_SDA</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PWM_A_1</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x04</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIO_18</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO0_18</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x06</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO1_18</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x07</span>);
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Outover</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">Outover</span> {
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive output from peripheral signal selected by funcsel&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NORMAL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive output from inverse of peripheral signal selected by funcsel&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">INVERT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive output low&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LOW</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive output high&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">HIGH</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
+}
+<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Gpio27CtrlFuncsel</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">Gpio27CtrlFuncsel</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SPI1_TX</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">UART1_RTS</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">I2C1_SCL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PWM_B_5</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x04</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIO_27</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO0_27</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x06</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO1_27</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x07</span>);
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">USB_MUXING_OVERCURR_DETECT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x09</span>);
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NULL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x1f</span>);
 }
 <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Gpio8CtrlFuncsel</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">Gpio8CtrlFuncsel</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SPI1_RX</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">UART1_TX</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">I2C0_SDA</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PWM_A_4</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x04</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIO_8</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO0_8</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x06</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO1_8</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x07</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">USB_MUXING_EXTPHY_RCV</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x08</span>);
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Gpio14CtrlFuncsel</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">Gpio14CtrlFuncsel</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SPI1_SCLK</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">UART0_CTS</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">I2C1_SDA</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PWM_A_7</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x04</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIO_14</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO0_14</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x06</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO1_14</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x07</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">USB_MUXING_EXTPHY_VMO</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x08</span>);
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">USB_MUXING_VBUS_EN</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x09</span>);
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NULL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x1f</span>);
 }
@@ -1014,48 +921,141 @@
 <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Gpio28CtrlFuncsel</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">Gpio28CtrlFuncsel</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SPI1_RX</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">UART0_TX</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">I2C0_SDA</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PWM_A_6</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x04</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIO_28</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO0_28</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x06</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO1_28</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x07</span>);
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Gpio19CtrlFuncsel</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">Gpio19CtrlFuncsel</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SPI0_TX</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">UART0_RTS</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">I2C1_SCL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PWM_B_1</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x04</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIO_19</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO0_19</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x06</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO1_19</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x07</span>);
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">USB_MUXING_VBUS_DETECT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x09</span>);
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NULL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x1f</span>);
 }
 <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Gpio12CtrlFuncsel</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">Gpio12CtrlFuncsel</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SPI1_RX</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">UART0_TX</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">I2C0_SDA</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PWM_A_6</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x04</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIO_12</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO0_12</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x06</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO1_12</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x07</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">USB_MUXING_EXTPHY_SPEED</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x08</span>);
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Irqover</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">Irqover</span> {
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;don&#39;t invert the interrupt&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NORMAL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;invert the interrupt&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">INVERT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive interrupt low&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LOW</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive interrupt high&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">HIGH</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
+}
+<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Gpio9CtrlFuncsel</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">Gpio9CtrlFuncsel</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SPI1_SS_N</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">UART1_RX</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">I2C0_SCL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PWM_B_4</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x04</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIO_9</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO0_9</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x06</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO1_9</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x07</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">USB_MUXING_EXTPHY_VP</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x08</span>);
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">USB_MUXING_OVERCURR_DETECT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x09</span>);
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NULL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x1f</span>);
 }
 <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Gpio3CtrlFuncsel</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">Gpio3CtrlFuncsel</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">JTAG_TDO</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SPI0_TX</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">UART0_RTS</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">I2C1_SCL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PWM_B_1</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x04</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIO_3</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO0_3</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x06</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO1_3</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x07</span>);
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Gpio16CtrlFuncsel</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">Gpio16CtrlFuncsel</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SPI0_RX</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">UART0_TX</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">I2C0_SDA</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PWM_A_0</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x04</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIO_16</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO0_16</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x06</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO1_16</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x07</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">USB_MUXING_DIGITAL_DM</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x08</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">USB_MUXING_VBUS_DETECT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x09</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NULL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x1f</span>);
+}
+<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Gpio21CtrlFuncsel</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">Gpio21CtrlFuncsel</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SPI0_SS_N</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">UART1_RX</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">I2C0_SCL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PWM_B_2</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x04</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIO_21</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO0_21</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x06</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO1_21</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x07</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLOCKS_GPOUT_0</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x08</span>);
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">USB_MUXING_OVERCURR_DETECT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x09</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NULL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x1f</span>);
+}
+<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Gpio11CtrlFuncsel</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">Gpio11CtrlFuncsel</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SPI1_TX</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">UART1_RTS</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">I2C1_SCL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PWM_B_5</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x04</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIO_11</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO0_11</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x06</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO1_11</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x07</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">USB_MUXING_EXTPHY_SUSPND</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x08</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">USB_MUXING_VBUS_EN</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x09</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NULL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x1f</span>);
+}
+<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Gpio2CtrlFuncsel</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">Gpio2CtrlFuncsel</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">JTAG_TDI</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SPI0_SCLK</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">UART0_CTS</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">I2C1_SDA</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PWM_A_1</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x04</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIO_2</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO0_2</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x06</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO1_2</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x07</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">USB_MUXING_VBUS_EN</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x09</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NULL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x1f</span>);
+}
+<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Gpio18CtrlFuncsel</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">Gpio18CtrlFuncsel</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SPI0_SCLK</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">UART0_CTS</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">I2C1_SDA</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PWM_A_1</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x04</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIO_18</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO0_18</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x06</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO1_18</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x07</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">USB_MUXING_OVERCURR_DETECT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x09</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NULL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x1f</span>);
+}
+<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Gpio10CtrlFuncsel</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">Gpio10CtrlFuncsel</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SPI1_SCLK</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">UART1_CTS</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">I2C1_SDA</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PWM_A_5</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x04</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIO_10</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO0_10</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x06</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIO1_10</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x07</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">USB_MUXING_EXTPHY_VM</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x08</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">USB_MUXING_VBUS_DETECT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x09</span>);
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NULL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x1f</span>);
 }
 </pre></div>

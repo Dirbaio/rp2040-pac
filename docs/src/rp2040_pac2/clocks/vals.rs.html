@@ -182,11 +182,89 @@
 <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Clock control, can be changed on-the-fly (except for auxsrc)&quot;</span>]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ClkRefCtrlAuxsrc</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">ClkRefCtrlAuxsrc</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLKSRC_PLL_USB</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ClkSysCtrlSrc</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">ClkSysCtrlSrc</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLK_REF</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLKSRC_CLK_SYS_AUX</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
+}
+<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Clock control, can be changed on-the-fly (except for auxsrc)&quot;</span>]</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ClkGpout0CtrlAuxsrc</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">ClkGpout0CtrlAuxsrc</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLKSRC_PLL_SYS</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLKSRC_GPIN0</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLKSRC_GPIN1</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLKSRC_PLL_USB</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ROSC_CLKSRC</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x04</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XOSC_CLKSRC</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLK_SYS</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x06</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLK_USB</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x07</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLK_ADC</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x08</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLK_RTC</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x09</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLK_REF</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x0a</span>);
+}
+<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Clock sent to frequency counter, set to 0 when not required Writing to this register initiates the frequency count&quot;</span>]</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Fc0Src</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">Fc0Src</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NULL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PLL_SYS_CLKSRC_PRIMARY</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PLL_USB_CLKSRC_PRIMARY</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ROSC_CLKSRC</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ROSC_CLKSRC_PH</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x04</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XOSC_CLKSRC</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLKSRC_GPIN0</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x06</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLKSRC_GPIN1</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x07</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLK_REF</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x08</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLK_SYS</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x09</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLK_PERI</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x0a</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLK_USB</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x0b</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLK_ADC</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x0c</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLK_RTC</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x0d</span>);
+}
+<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Clock control, can be changed on-the-fly (except for auxsrc)&quot;</span>]</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ClkGpout2CtrlAuxsrc</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">ClkGpout2CtrlAuxsrc</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLKSRC_PLL_SYS</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLKSRC_GPIN0</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLKSRC_GPIN1</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLKSRC_PLL_USB</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ROSC_CLKSRC_PH</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x04</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XOSC_CLKSRC</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLK_SYS</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x06</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLK_USB</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x07</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLK_ADC</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x08</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLK_RTC</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x09</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLK_REF</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x0a</span>);
+}
+<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Clock control, can be changed on-the-fly (except for auxsrc)&quot;</span>]</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ClkAdcCtrlAuxsrc</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">ClkAdcCtrlAuxsrc</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLKSRC_PLL_USB</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLKSRC_PLL_SYS</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ROSC_CLKSRC_PH</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XOSC_CLKSRC</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLKSRC_GPIN0</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x04</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLKSRC_GPIN1</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
+}
+<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Clock control, can be changed on-the-fly (except for auxsrc)&quot;</span>]</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ClkPeriCtrlAuxsrc</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">ClkPeriCtrlAuxsrc</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLK_SYS</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLKSRC_PLL_SYS</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLKSRC_PLL_USB</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ROSC_CLKSRC_PH</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XOSC_CLKSRC</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x04</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLKSRC_GPIN0</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLKSRC_GPIN1</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x06</span>);
 }
 <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Clock control, can be changed on-the-fly (except for auxsrc)&quot;</span>]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
@@ -224,57 +302,20 @@
 <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Clock control, can be changed on-the-fly (except for auxsrc)&quot;</span>]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ClkAdcCtrlAuxsrc</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">ClkAdcCtrlAuxsrc</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLKSRC_PLL_USB</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLKSRC_PLL_SYS</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ROSC_CLKSRC_PH</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ClkSysCtrlAuxsrc</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">ClkSysCtrlAuxsrc</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLKSRC_PLL_SYS</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLKSRC_PLL_USB</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ROSC_CLKSRC</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XOSC_CLKSRC</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLKSRC_GPIN0</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x04</span>);
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLKSRC_GPIN1</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
 }
-<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Clock sent to frequency counter, set to 0 when not required Writing to this register initiates the frequency count&quot;</span>]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Fc0Src</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">Fc0Src</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NULL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PLL_SYS_CLKSRC_PRIMARY</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PLL_USB_CLKSRC_PRIMARY</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ROSC_CLKSRC</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ROSC_CLKSRC_PH</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x04</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XOSC_CLKSRC</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLKSRC_GPIN0</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x06</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLKSRC_GPIN1</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x07</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLK_REF</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x08</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLK_SYS</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x09</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLK_PERI</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x0a</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLK_USB</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x0b</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLK_ADC</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x0c</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLK_RTC</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x0d</span>);
-}
 <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Clock control, can be changed on-the-fly (except for auxsrc)&quot;</span>]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ClkGpout0CtrlAuxsrc</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">ClkGpout0CtrlAuxsrc</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLKSRC_PLL_SYS</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLKSRC_GPIN0</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLKSRC_GPIN1</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLKSRC_PLL_USB</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ROSC_CLKSRC</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x04</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XOSC_CLKSRC</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLK_SYS</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x06</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLK_USB</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x07</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLK_ADC</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x08</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLK_RTC</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x09</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLK_REF</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x0a</span>);
-}
-<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Clock control, can be changed on-the-fly (except for auxsrc)&quot;</span>]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ClkGpout2CtrlAuxsrc</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">ClkGpout2CtrlAuxsrc</span> {
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ClkGpout3CtrlAuxsrc</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">ClkGpout3CtrlAuxsrc</span> {
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLKSRC_PLL_SYS</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLKSRC_GPIN0</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLKSRC_GPIN1</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
@@ -307,52 +348,11 @@
 <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Clock control, can be changed on-the-fly (except for auxsrc)&quot;</span>]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ClkPeriCtrlAuxsrc</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">ClkPeriCtrlAuxsrc</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLK_SYS</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLKSRC_PLL_SYS</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLKSRC_PLL_USB</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ROSC_CLKSRC_PH</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XOSC_CLKSRC</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x04</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLKSRC_GPIN0</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLKSRC_GPIN1</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x06</span>);
-}
-<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Clock control, can be changed on-the-fly (except for auxsrc)&quot;</span>]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ClkSysCtrlSrc</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">ClkSysCtrlSrc</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLK_REF</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLKSRC_CLK_SYS_AUX</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
-}
-<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Clock control, can be changed on-the-fly (except for auxsrc)&quot;</span>]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ClkGpout3CtrlAuxsrc</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">ClkGpout3CtrlAuxsrc</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLKSRC_PLL_SYS</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ClkRefCtrlAuxsrc</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">ClkRefCtrlAuxsrc</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLKSRC_PLL_USB</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLKSRC_GPIN0</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLKSRC_GPIN1</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLKSRC_PLL_USB</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ROSC_CLKSRC_PH</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x04</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XOSC_CLKSRC</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLK_SYS</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x06</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLK_USB</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x07</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLK_ADC</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x08</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLK_RTC</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x09</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLK_REF</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x0a</span>);
-}
-<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Clock control, can be changed on-the-fly (except for auxsrc)&quot;</span>]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ClkSysCtrlAuxsrc</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">ClkSysCtrlAuxsrc</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLKSRC_PLL_SYS</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLKSRC_PLL_USB</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ROSC_CLKSRC</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XOSC_CLKSRC</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLKSRC_GPIN0</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x04</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CLKSRC_GPIN1</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><section class="footer"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="rp2040_pac2" data-search-js="../../../search-index.js"></div>

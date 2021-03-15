@@ -32,16 +32,6 @@
 <span id="29">29</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">generic</span>::<span class="kw-2">*</span>;
-<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Crystal Oscillator Control&quot;</span>]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CtrlFreqRange</span>(<span class="kw">pub</span> <span class="ident">u16</span>);
-<span class="kw">impl</span> <span class="ident">CtrlFreqRange</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">_1_15MHZ</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x0aa0</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RESERVED_1</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x0aa1</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RESERVED_2</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x0aa2</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RESERVED_3</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x0aa3</span>);
-}
 <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Crystal Oscillator Status&quot;</span>]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
@@ -51,6 +41,16 @@
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RESERVED_1</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RESERVED_2</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RESERVED_3</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
+}
+<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Crystal Oscillator Control&quot;</span>]</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CtrlFreqRange</span>(<span class="kw">pub</span> <span class="ident">u16</span>);
+<span class="kw">impl</span> <span class="ident">CtrlFreqRange</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">_1_15MHZ</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x0aa0</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RESERVED_1</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x0aa1</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RESERVED_2</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x0aa2</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RESERVED_3</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x0aa3</span>);
 }
 <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Crystal Oscillator Control&quot;</span>]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>

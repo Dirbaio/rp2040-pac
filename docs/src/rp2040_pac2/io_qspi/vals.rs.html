@@ -411,67 +411,11 @@
 <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GpioQspiSd1CtrlInover</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">GpioQspiSd1CtrlInover</span> {
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;don&#39;t invert the peri input&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NORMAL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;invert the peri input&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">INVERT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive peri input low&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LOW</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive peri input high&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">HIGH</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
-}
-<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GpioQspiSd2CtrlInover</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">GpioQspiSd2CtrlInover</span> {
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;don&#39;t invert the peri input&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NORMAL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;invert the peri input&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">INVERT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive peri input low&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LOW</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive peri input high&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">HIGH</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
-}
-<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GpioQspiSd0CtrlFuncsel</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">GpioQspiSd0CtrlFuncsel</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIP_SD0</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIO_32</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GpioQspiSd3CtrlFuncsel</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">GpioQspiSd3CtrlFuncsel</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIP_SD3</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIO_35</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NULL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x1f</span>);
-}
-<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GpioQspiSd3CtrlOutover</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">GpioQspiSd3CtrlOutover</span> {
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive output from peripheral signal selected by funcsel&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NORMAL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive output from inverse of peripheral signal selected by funcsel&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">INVERT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive output low&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LOW</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive output high&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">HIGH</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
-}
-<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GpioQspiSd1CtrlIrqover</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">GpioQspiSd1CtrlIrqover</span> {
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;don&#39;t invert the interrupt&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NORMAL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;invert the interrupt&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">INVERT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive interrupt low&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LOW</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive interrupt high&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">HIGH</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
 }
 <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
@@ -490,174 +434,11 @@
 <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GpioQspiSclkCtrlIrqover</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">GpioQspiSclkCtrlIrqover</span> {
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;don&#39;t invert the interrupt&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NORMAL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;invert the interrupt&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">INVERT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive interrupt low&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LOW</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive interrupt high&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">HIGH</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
-}
-<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GpioQspiSd3CtrlIrqover</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">GpioQspiSd3CtrlIrqover</span> {
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;don&#39;t invert the interrupt&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NORMAL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;invert the interrupt&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">INVERT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive interrupt low&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LOW</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive interrupt high&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">HIGH</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
-}
-<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GpioQspiSd0CtrlInover</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">GpioQspiSd0CtrlInover</span> {
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;don&#39;t invert the peri input&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NORMAL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;invert the peri input&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">INVERT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive peri input low&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LOW</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive peri input high&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">HIGH</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
-}
-<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GpioQspiSd0CtrlOeover</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">GpioQspiSd0CtrlOeover</span> {
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive output enable from peripheral signal selected by funcsel&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NORMAL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive output enable from inverse of peripheral signal selected by funcsel&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">INVERT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;disable output&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DISABLE</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;enable output&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ENABLE</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
-}
-<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GpioQspiSclkCtrlFuncsel</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">GpioQspiSclkCtrlFuncsel</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIP_SCLK</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIO_30</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GpioQspiSd1CtrlFuncsel</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">GpioQspiSd1CtrlFuncsel</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIP_SD1</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIO_33</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NULL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x1f</span>);
-}
-<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GpioQspiSclkCtrlInover</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">GpioQspiSclkCtrlInover</span> {
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;don&#39;t invert the peri input&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NORMAL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;invert the peri input&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">INVERT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive peri input low&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LOW</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive peri input high&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">HIGH</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
-}
-<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GpioQspiSd1CtrlOeover</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">GpioQspiSd1CtrlOeover</span> {
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive output enable from peripheral signal selected by funcsel&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NORMAL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive output enable from inverse of peripheral signal selected by funcsel&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">INVERT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;disable output&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DISABLE</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;enable output&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ENABLE</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
-}
-<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GpioQspiSd0CtrlOutover</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">GpioQspiSd0CtrlOutover</span> {
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive output from peripheral signal selected by funcsel&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NORMAL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive output from inverse of peripheral signal selected by funcsel&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">INVERT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive output low&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LOW</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive output high&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">HIGH</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
-}
-<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GpioQspiSd3CtrlInover</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">GpioQspiSd3CtrlInover</span> {
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;don&#39;t invert the peri input&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NORMAL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;invert the peri input&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">INVERT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive peri input low&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LOW</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive peri input high&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">HIGH</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
-}
-<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GpioQspiSd3CtrlFuncsel</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">GpioQspiSd3CtrlFuncsel</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIP_SD3</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIO_35</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NULL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x1f</span>);
-}
-<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GpioQspiSd3CtrlOeover</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">GpioQspiSd3CtrlOeover</span> {
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive output enable from peripheral signal selected by funcsel&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NORMAL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive output enable from inverse of peripheral signal selected by funcsel&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">INVERT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;disable output&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DISABLE</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;enable output&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ENABLE</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
-}
-<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GpioQspiSd2CtrlOutover</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">GpioQspiSd2CtrlOutover</span> {
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive output from peripheral signal selected by funcsel&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NORMAL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive output from inverse of peripheral signal selected by funcsel&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">INVERT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive output low&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LOW</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive output high&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">HIGH</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
-}
-<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GpioQspiSsCtrlOeover</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">GpioQspiSsCtrlOeover</span> {
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive output enable from peripheral signal selected by funcsel&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NORMAL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive output enable from inverse of peripheral signal selected by funcsel&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">INVERT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;disable output&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DISABLE</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;enable output&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ENABLE</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
 }
 <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
@@ -676,8 +457,8 @@
 <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GpioQspiSsCtrlIrqover</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">GpioQspiSsCtrlIrqover</span> {
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GpioQspiSd3CtrlIrqover</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">GpioQspiSd3CtrlIrqover</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;don&#39;t invert the interrupt&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NORMAL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;invert the interrupt&quot;</span>]</span>
@@ -704,11 +485,30 @@
 <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GpioQspiSd2CtrlFuncsel</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">GpioQspiSd2CtrlFuncsel</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIP_SD2</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIO_34</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NULL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x1f</span>);
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GpioQspiSd0CtrlOeover</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">GpioQspiSd0CtrlOeover</span> {
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive output enable from peripheral signal selected by funcsel&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NORMAL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive output enable from inverse of peripheral signal selected by funcsel&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">INVERT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;disable output&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DISABLE</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;enable output&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ENABLE</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
+}
+<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GpioQspiSsCtrlOeover</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">GpioQspiSsCtrlOeover</span> {
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive output enable from peripheral signal selected by funcsel&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NORMAL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive output enable from inverse of peripheral signal selected by funcsel&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">INVERT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;disable output&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DISABLE</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;enable output&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ENABLE</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
 }
 <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
@@ -722,31 +522,8 @@
 <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GpioQspiSd1CtrlFuncsel</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">GpioQspiSd1CtrlFuncsel</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIP_SD1</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIO_33</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NULL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x1f</span>);
-}
-<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GpioQspiSd0CtrlIrqover</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">GpioQspiSd0CtrlIrqover</span> {
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;don&#39;t invert the interrupt&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NORMAL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;invert the interrupt&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">INVERT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive interrupt low&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LOW</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive interrupt high&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">HIGH</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
-}
-<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GpioQspiSd1CtrlOutover</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">GpioQspiSd1CtrlOutover</span> {
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GpioQspiSd2CtrlOutover</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">GpioQspiSd2CtrlOutover</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive output from peripheral signal selected by funcsel&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NORMAL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive output from inverse of peripheral signal selected by funcsel&quot;</span>]</span>
@@ -773,6 +550,76 @@
 <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GpioQspiSd1CtrlOutover</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">GpioQspiSd1CtrlOutover</span> {
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive output from peripheral signal selected by funcsel&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NORMAL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive output from inverse of peripheral signal selected by funcsel&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">INVERT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive output low&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LOW</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive output high&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">HIGH</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
+}
+<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GpioQspiSd3CtrlOutover</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">GpioQspiSd3CtrlOutover</span> {
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive output from peripheral signal selected by funcsel&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NORMAL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive output from inverse of peripheral signal selected by funcsel&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">INVERT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive output low&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LOW</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive output high&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">HIGH</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
+}
+<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GpioQspiSclkCtrlIrqover</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">GpioQspiSclkCtrlIrqover</span> {
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;don&#39;t invert the interrupt&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NORMAL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;invert the interrupt&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">INVERT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive interrupt low&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LOW</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive interrupt high&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">HIGH</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
+}
+<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GpioQspiSsCtrlIrqover</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">GpioQspiSsCtrlIrqover</span> {
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;don&#39;t invert the interrupt&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NORMAL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;invert the interrupt&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">INVERT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive interrupt low&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LOW</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive interrupt high&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">HIGH</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
+}
+<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GpioQspiSclkCtrlInover</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">GpioQspiSclkCtrlInover</span> {
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;don&#39;t invert the peri input&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NORMAL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;invert the peri input&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">INVERT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive peri input low&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LOW</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive peri input high&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">HIGH</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
+}
+<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GpioQspiSclkCtrlOeover</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
 <span class="kw">impl</span> <span class="ident">GpioQspiSclkCtrlOeover</span> {
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive output enable from peripheral signal selected by funcsel&quot;</span>]</span>
@@ -783,6 +630,159 @@
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DISABLE</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;enable output&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ENABLE</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
+}
+<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GpioQspiSd2CtrlFuncsel</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">GpioQspiSd2CtrlFuncsel</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIP_SD2</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIO_34</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NULL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x1f</span>);
+}
+<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GpioQspiSd0CtrlFuncsel</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">GpioQspiSd0CtrlFuncsel</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIP_SD0</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIO_32</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NULL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x1f</span>);
+}
+<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GpioQspiSd0CtrlOutover</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">GpioQspiSd0CtrlOutover</span> {
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive output from peripheral signal selected by funcsel&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NORMAL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive output from inverse of peripheral signal selected by funcsel&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">INVERT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive output low&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LOW</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive output high&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">HIGH</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
+}
+<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GpioQspiSclkCtrlFuncsel</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">GpioQspiSclkCtrlFuncsel</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIP_SCLK</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIO_30</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x05</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NULL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x1f</span>);
+}
+<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GpioQspiSd2CtrlInover</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">GpioQspiSd2CtrlInover</span> {
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;don&#39;t invert the peri input&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NORMAL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;invert the peri input&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">INVERT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive peri input low&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LOW</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive peri input high&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">HIGH</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
+}
+<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GpioQspiSd1CtrlIrqover</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">GpioQspiSd1CtrlIrqover</span> {
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;don&#39;t invert the interrupt&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NORMAL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;invert the interrupt&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">INVERT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive interrupt low&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LOW</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive interrupt high&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">HIGH</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
+}
+<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GpioQspiSd0CtrlIrqover</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">GpioQspiSd0CtrlIrqover</span> {
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;don&#39;t invert the interrupt&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NORMAL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;invert the interrupt&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">INVERT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive interrupt low&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LOW</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive interrupt high&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">HIGH</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
+}
+<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GpioQspiSd3CtrlOeover</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">GpioQspiSd3CtrlOeover</span> {
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive output enable from peripheral signal selected by funcsel&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NORMAL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive output enable from inverse of peripheral signal selected by funcsel&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">INVERT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;disable output&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DISABLE</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;enable output&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ENABLE</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
+}
+<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GpioQspiSd1CtrlInover</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">GpioQspiSd1CtrlInover</span> {
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;don&#39;t invert the peri input&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NORMAL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;invert the peri input&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">INVERT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive peri input low&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LOW</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive peri input high&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">HIGH</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
+}
+<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GpioQspiSd1CtrlOeover</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">GpioQspiSd1CtrlOeover</span> {
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive output enable from peripheral signal selected by funcsel&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NORMAL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive output enable from inverse of peripheral signal selected by funcsel&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">INVERT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;disable output&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DISABLE</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;enable output&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ENABLE</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
+}
+<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GpioQspiSd3CtrlInover</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">GpioQspiSd3CtrlInover</span> {
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;don&#39;t invert the peri input&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NORMAL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;invert the peri input&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">INVERT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive peri input low&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LOW</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive peri input high&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">HIGH</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
+}
+<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;GPIO control including function select and overrides.&quot;</span>]</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GpioQspiSd0CtrlInover</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">GpioQspiSd0CtrlInover</span> {
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;don&#39;t invert the peri input&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NORMAL</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;invert the peri input&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">INVERT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive peri input low&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LOW</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;drive peri input high&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">HIGH</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><section class="footer"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="rp2040_pac2" data-search-js="../../../search-index.js"></div>
