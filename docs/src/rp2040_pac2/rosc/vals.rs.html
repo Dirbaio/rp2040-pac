@@ -36,20 +36,12 @@
 <span id="33">33</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">generic</span>::<span class="kw-2">*</span>;
-<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Ring Oscillator control&quot;</span>]</span>
+<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Controls the output divider&quot;</span>]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CtrlEnable</span>(<span class="kw">pub</span> <span class="ident">u16</span>);
-<span class="kw">impl</span> <span class="ident">CtrlEnable</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DISABLE</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x0d1e</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ENABLE</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x0fab</span>);
-}
-<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;For a detailed description see freqa register&quot;</span>]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Passwd</span>(<span class="kw">pub</span> <span class="ident">u16</span>);
-<span class="kw">impl</span> <span class="ident">Passwd</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PASS</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x9696</span>);
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Div</span>(<span class="kw">pub</span> <span class="ident">u16</span>);
+<span class="kw">impl</span> <span class="ident">Div</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PASS</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x0aa0</span>);
 }
 <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Ring Oscillator control&quot;</span>]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
@@ -61,12 +53,20 @@
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">HIGH</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x0fa7</span>);
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TOOHIGH</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x0fa6</span>);
 }
-<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Controls the output divider&quot;</span>]</span>
+<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;For a detailed description see freqa register&quot;</span>]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Div</span>(<span class="kw">pub</span> <span class="ident">u16</span>);
-<span class="kw">impl</span> <span class="ident">Div</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PASS</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x0aa0</span>);
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Passwd</span>(<span class="kw">pub</span> <span class="ident">u16</span>);
+<span class="kw">impl</span> <span class="ident">Passwd</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PASS</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x9696</span>);
+}
+<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Ring Oscillator control&quot;</span>]</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CtrlEnable</span>(<span class="kw">pub</span> <span class="ident">u16</span>);
+<span class="kw">impl</span> <span class="ident">CtrlEnable</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DISABLE</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x0d1e</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ENABLE</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x0fab</span>);
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><section class="footer"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="rp2040_pac2" data-search-js="../../../search-index.js"></div>

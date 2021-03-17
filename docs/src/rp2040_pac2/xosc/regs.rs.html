@@ -145,6 +145,64 @@
         <span class="ident">Count</span>(<span class="number">0</span>)
     }
 }
+<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Crystal Oscillator Control&quot;</span>]</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Ctrl</span>(<span class="kw">pub</span> <span class="ident">u32</span>);
+<span class="kw">impl</span> <span class="ident">Ctrl</span> {
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;On power-up this field is initialised to DISABLE and the chip runs from the ROSC. If the chip has subsequently been programmed to run from the XOSC then setting this field to DISABLE may lock-up the chip. If this is a concern then run the clk_ref from the ROSC and enable the clk_sys RESUS feature. The 12-bit code is intended to give some protection against accidental writes. An invalid setting will enable the oscillator.&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">enable</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw">super</span>::<span class="ident">vals</span>::<span class="ident">CtrlEnable</span> {
+        <span class="kw">let</span> <span class="ident">val</span> <span class="op">=</span> (<span class="self">self</span>.<span class="number">0</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">12u32</span>) <span class="op">&amp;</span> <span class="number">0x0fff</span>;
+        <span class="kw">super</span>::<span class="ident">vals</span>::<span class="ident">CtrlEnable</span>(<span class="ident">val</span> <span class="kw">as</span> <span class="ident">u16</span>)
+    }
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;On power-up this field is initialised to DISABLE and the chip runs from the ROSC. If the chip has subsequently been programmed to run from the XOSC then setting this field to DISABLE may lock-up the chip. If this is a concern then run the clk_ref from the ROSC and enable the clk_sys RESUS feature. The 12-bit code is intended to give some protection against accidental writes. An invalid setting will enable the oscillator.&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_enable</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">val</span>: <span class="kw">super</span>::<span class="ident">vals</span>::<span class="ident">CtrlEnable</span>) {
+        <span class="self">self</span>.<span class="number">0</span> <span class="op">=</span> (<span class="self">self</span>.<span class="number">0</span> <span class="op">&amp;</span> <span class="op">!</span>(<span class="number">0x0fff</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">12u32</span>)) <span class="op">|</span> (((<span class="ident">val</span>.<span class="number">0</span> <span class="kw">as</span> <span class="ident">u32</span>) <span class="op">&amp;</span> <span class="number">0x0fff</span>) <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">12u32</span>);
+    }
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Frequency range. This resets to 0xAA0 and cannot be changed.&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">freq_range</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw">super</span>::<span class="ident">vals</span>::<span class="ident">CtrlFreqRange</span> {
+        <span class="kw">let</span> <span class="ident">val</span> <span class="op">=</span> (<span class="self">self</span>.<span class="number">0</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">0u32</span>) <span class="op">&amp;</span> <span class="number">0x0fff</span>;
+        <span class="kw">super</span>::<span class="ident">vals</span>::<span class="ident">CtrlFreqRange</span>(<span class="ident">val</span> <span class="kw">as</span> <span class="ident">u16</span>)
+    }
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Frequency range. This resets to 0xAA0 and cannot be changed.&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_freq_range</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">val</span>: <span class="kw">super</span>::<span class="ident">vals</span>::<span class="ident">CtrlFreqRange</span>) {
+        <span class="self">self</span>.<span class="number">0</span> <span class="op">=</span> (<span class="self">self</span>.<span class="number">0</span> <span class="op">&amp;</span> <span class="op">!</span>(<span class="number">0x0fff</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">0u32</span>)) <span class="op">|</span> (((<span class="ident">val</span>.<span class="number">0</span> <span class="kw">as</span> <span class="ident">u32</span>) <span class="op">&amp;</span> <span class="number">0x0fff</span>) <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">0u32</span>);
+    }
+}
+<span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">Ctrl</span> {
+    <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Ctrl</span> {
+        <span class="ident">Ctrl</span>(<span class="number">0</span>)
+    }
+}
+<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Controls the startup delay&quot;</span>]</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Startup</span>(<span class="kw">pub</span> <span class="ident">u32</span>);
+<span class="kw">impl</span> <span class="ident">Startup</span> {
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Multiplies the startup_delay by 4. This is of little value to the user given that the delay can be programmed directly&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">x4</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+        <span class="kw">let</span> <span class="ident">val</span> <span class="op">=</span> (<span class="self">self</span>.<span class="number">0</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">20u32</span>) <span class="op">&amp;</span> <span class="number">0x01</span>;
+        <span class="ident">val</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span>
+    }
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Multiplies the startup_delay by 4. This is of little value to the user given that the delay can be programmed directly&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_x4</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">val</span>: <span class="ident">bool</span>) {
+        <span class="self">self</span>.<span class="number">0</span> <span class="op">=</span> (<span class="self">self</span>.<span class="number">0</span> <span class="op">&amp;</span> <span class="op">!</span>(<span class="number">0x01</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">20u32</span>)) <span class="op">|</span> (((<span class="ident">val</span> <span class="kw">as</span> <span class="ident">u32</span>) <span class="op">&amp;</span> <span class="number">0x01</span>) <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">20u32</span>);
+    }
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;in multiples of 256*xtal_period&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">delay</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u16</span> {
+        <span class="kw">let</span> <span class="ident">val</span> <span class="op">=</span> (<span class="self">self</span>.<span class="number">0</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">0u32</span>) <span class="op">&amp;</span> <span class="number">0x3fff</span>;
+        <span class="ident">val</span> <span class="kw">as</span> <span class="ident">u16</span>
+    }
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;in multiples of 256*xtal_period&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_delay</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">val</span>: <span class="ident">u16</span>) {
+        <span class="self">self</span>.<span class="number">0</span> <span class="op">=</span> (<span class="self">self</span>.<span class="number">0</span> <span class="op">&amp;</span> <span class="op">!</span>(<span class="number">0x3fff</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">0u32</span>)) <span class="op">|</span> (((<span class="ident">val</span> <span class="kw">as</span> <span class="ident">u32</span>) <span class="op">&amp;</span> <span class="number">0x3fff</span>) <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">0u32</span>);
+    }
+}
+<span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">Startup</span> {
+    <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Startup</span> {
+        <span class="ident">Startup</span>(<span class="number">0</span>)
+    }
+}
 <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Crystal Oscillator Status&quot;</span>]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
@@ -190,64 +248,6 @@
 <span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">Status</span> {
     <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Status</span> {
         <span class="ident">Status</span>(<span class="number">0</span>)
-    }
-}
-<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Controls the startup delay&quot;</span>]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Startup</span>(<span class="kw">pub</span> <span class="ident">u32</span>);
-<span class="kw">impl</span> <span class="ident">Startup</span> {
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Multiplies the startup_delay by 4. This is of little value to the user given that the delay can be programmed directly&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">x4</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-        <span class="kw">let</span> <span class="ident">val</span> <span class="op">=</span> (<span class="self">self</span>.<span class="number">0</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">20u32</span>) <span class="op">&amp;</span> <span class="number">0x01</span>;
-        <span class="ident">val</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span>
-    }
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Multiplies the startup_delay by 4. This is of little value to the user given that the delay can be programmed directly&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_x4</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">val</span>: <span class="ident">bool</span>) {
-        <span class="self">self</span>.<span class="number">0</span> <span class="op">=</span> (<span class="self">self</span>.<span class="number">0</span> <span class="op">&amp;</span> <span class="op">!</span>(<span class="number">0x01</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">20u32</span>)) <span class="op">|</span> (((<span class="ident">val</span> <span class="kw">as</span> <span class="ident">u32</span>) <span class="op">&amp;</span> <span class="number">0x01</span>) <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">20u32</span>);
-    }
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;in multiples of 256*xtal_period&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">delay</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u16</span> {
-        <span class="kw">let</span> <span class="ident">val</span> <span class="op">=</span> (<span class="self">self</span>.<span class="number">0</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">0u32</span>) <span class="op">&amp;</span> <span class="number">0x3fff</span>;
-        <span class="ident">val</span> <span class="kw">as</span> <span class="ident">u16</span>
-    }
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;in multiples of 256*xtal_period&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_delay</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">val</span>: <span class="ident">u16</span>) {
-        <span class="self">self</span>.<span class="number">0</span> <span class="op">=</span> (<span class="self">self</span>.<span class="number">0</span> <span class="op">&amp;</span> <span class="op">!</span>(<span class="number">0x3fff</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">0u32</span>)) <span class="op">|</span> (((<span class="ident">val</span> <span class="kw">as</span> <span class="ident">u32</span>) <span class="op">&amp;</span> <span class="number">0x3fff</span>) <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">0u32</span>);
-    }
-}
-<span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">Startup</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Startup</span> {
-        <span class="ident">Startup</span>(<span class="number">0</span>)
-    }
-}
-<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Crystal Oscillator Control&quot;</span>]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Ctrl</span>(<span class="kw">pub</span> <span class="ident">u32</span>);
-<span class="kw">impl</span> <span class="ident">Ctrl</span> {
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;On power-up this field is initialised to DISABLE and the chip runs from the ROSC. If the chip has subsequently been programmed to run from the XOSC then setting this field to DISABLE may lock-up the chip. If this is a concern then run the clk_ref from the ROSC and enable the clk_sys RESUS feature. The 12-bit code is intended to give some protection against accidental writes. An invalid setting will enable the oscillator.&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">enable</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw">super</span>::<span class="ident">vals</span>::<span class="ident">CtrlEnable</span> {
-        <span class="kw">let</span> <span class="ident">val</span> <span class="op">=</span> (<span class="self">self</span>.<span class="number">0</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">12u32</span>) <span class="op">&amp;</span> <span class="number">0x0fff</span>;
-        <span class="kw">super</span>::<span class="ident">vals</span>::<span class="ident">CtrlEnable</span>(<span class="ident">val</span> <span class="kw">as</span> <span class="ident">u16</span>)
-    }
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;On power-up this field is initialised to DISABLE and the chip runs from the ROSC. If the chip has subsequently been programmed to run from the XOSC then setting this field to DISABLE may lock-up the chip. If this is a concern then run the clk_ref from the ROSC and enable the clk_sys RESUS feature. The 12-bit code is intended to give some protection against accidental writes. An invalid setting will enable the oscillator.&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_enable</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">val</span>: <span class="kw">super</span>::<span class="ident">vals</span>::<span class="ident">CtrlEnable</span>) {
-        <span class="self">self</span>.<span class="number">0</span> <span class="op">=</span> (<span class="self">self</span>.<span class="number">0</span> <span class="op">&amp;</span> <span class="op">!</span>(<span class="number">0x0fff</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">12u32</span>)) <span class="op">|</span> (((<span class="ident">val</span>.<span class="number">0</span> <span class="kw">as</span> <span class="ident">u32</span>) <span class="op">&amp;</span> <span class="number">0x0fff</span>) <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">12u32</span>);
-    }
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Frequency range. This resets to 0xAA0 and cannot be changed.&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">freq_range</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw">super</span>::<span class="ident">vals</span>::<span class="ident">CtrlFreqRange</span> {
-        <span class="kw">let</span> <span class="ident">val</span> <span class="op">=</span> (<span class="self">self</span>.<span class="number">0</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">0u32</span>) <span class="op">&amp;</span> <span class="number">0x0fff</span>;
-        <span class="kw">super</span>::<span class="ident">vals</span>::<span class="ident">CtrlFreqRange</span>(<span class="ident">val</span> <span class="kw">as</span> <span class="ident">u16</span>)
-    }
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Frequency range. This resets to 0xAA0 and cannot be changed.&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_freq_range</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">val</span>: <span class="kw">super</span>::<span class="ident">vals</span>::<span class="ident">CtrlFreqRange</span>) {
-        <span class="self">self</span>.<span class="number">0</span> <span class="op">=</span> (<span class="self">self</span>.<span class="number">0</span> <span class="op">&amp;</span> <span class="op">!</span>(<span class="number">0x0fff</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">0u32</span>)) <span class="op">|</span> (((<span class="ident">val</span>.<span class="number">0</span> <span class="kw">as</span> <span class="ident">u32</span>) <span class="op">&amp;</span> <span class="number">0x0fff</span>) <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">0u32</span>);
-    }
-}
-<span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">Ctrl</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Ctrl</span> {
-        <span class="ident">Ctrl</span>(<span class="number">0</span>)
     }
 }
 </pre></div>

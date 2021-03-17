@@ -256,51 +256,11 @@
 <span id="253">253</span>
 <span id="254">254</span>
 <span id="255">255</span>
-<span id="256">256</span>
-<span id="257">257</span>
-<span id="258">258</span>
-<span id="259">259</span>
-<span id="260">260</span>
-<span id="261">261</span>
-<span id="262">262</span>
-<span id="263">263</span>
-<span id="264">264</span>
-<span id="265">265</span>
-<span id="266">266</span>
-<span id="267">267</span>
-<span id="268">268</span>
-<span id="269">269</span>
-<span id="270">270</span>
-<span id="271">271</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="attribute">#![<span class="ident">no_std</span>]</span>
 <span class="attribute">#![<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Peripheral access API (generated using svd2rust v0.17.0 (8b3736c 2021-03-13))&quot;</span>]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Interrupt</span> {
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;6 - XIP_IRQ&quot;</span>]</span>
-    <span class="ident">XIP_IRQ</span> <span class="op">=</span> <span class="number">6</span>,
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;17 - CLOCKS_IRQ&quot;</span>]</span>
-    <span class="ident">CLOCKS_IRQ</span> <span class="op">=</span> <span class="number">17</span>,
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;13 - IO_IRQ_BANK0&quot;</span>]</span>
-    <span class="ident">IO_IRQ_BANK0</span> <span class="op">=</span> <span class="number">13</span>,
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;14 - IO_IRQ_QSPI&quot;</span>]</span>
-    <span class="ident">IO_IRQ_QSPI</span> <span class="op">=</span> <span class="number">14</span>,
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;20 - UART0_IRQ&quot;</span>]</span>
-    <span class="ident">UART0_IRQ</span> <span class="op">=</span> <span class="number">20</span>,
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;21 - UART1_IRQ&quot;</span>]</span>
-    <span class="ident">UART1_IRQ</span> <span class="op">=</span> <span class="number">21</span>,
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;18 - SPI0_IRQ&quot;</span>]</span>
-    <span class="ident">SPI0_IRQ</span> <span class="op">=</span> <span class="number">18</span>,
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;19 - SPI1_IRQ&quot;</span>]</span>
-    <span class="ident">SPI1_IRQ</span> <span class="op">=</span> <span class="number">19</span>,
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;23 - I2C0_IRQ&quot;</span>]</span>
-    <span class="ident">I2C0_IRQ</span> <span class="op">=</span> <span class="number">23</span>,
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;24 - I2C1_IRQ&quot;</span>]</span>
-    <span class="ident">I2C1_IRQ</span> <span class="op">=</span> <span class="number">24</span>,
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;22 - ADC_IRQ_FIFO&quot;</span>]</span>
-    <span class="ident">ADC_IRQ_FIFO</span> <span class="op">=</span> <span class="number">22</span>,
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;4 - PWM_IRQ_WRAP&quot;</span>]</span>
-    <span class="ident">PWM_IRQ_WRAP</span> <span class="op">=</span> <span class="number">4</span>,
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;0 - TIMER_IRQ_0&quot;</span>]</span>
     <span class="ident">TIMER_IRQ_0</span> <span class="op">=</span> <span class="number">0</span>,
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;1 - TIMER_IRQ_1&quot;</span>]</span>
@@ -309,14 +269,12 @@
     <span class="ident">TIMER_IRQ_2</span> <span class="op">=</span> <span class="number">2</span>,
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;3 - TIMER_IRQ_3&quot;</span>]</span>
     <span class="ident">TIMER_IRQ_3</span> <span class="op">=</span> <span class="number">3</span>,
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;25 - RTC_IRQ&quot;</span>]</span>
-    <span class="ident">RTC_IRQ</span> <span class="op">=</span> <span class="number">25</span>,
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;11 - DMA_IRQ_0&quot;</span>]</span>
-    <span class="ident">DMA_IRQ_0</span> <span class="op">=</span> <span class="number">11</span>,
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;12 - DMA_IRQ_1&quot;</span>]</span>
-    <span class="ident">DMA_IRQ_1</span> <span class="op">=</span> <span class="number">12</span>,
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;4 - PWM_IRQ_WRAP&quot;</span>]</span>
+    <span class="ident">PWM_IRQ_WRAP</span> <span class="op">=</span> <span class="number">4</span>,
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;5 - USBCTRL_IRQ&quot;</span>]</span>
     <span class="ident">USBCTRL_IRQ</span> <span class="op">=</span> <span class="number">5</span>,
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;6 - XIP_IRQ&quot;</span>]</span>
+    <span class="ident">XIP_IRQ</span> <span class="op">=</span> <span class="number">6</span>,
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;7 - PIO0_IRQ_0&quot;</span>]</span>
     <span class="ident">PIO0_IRQ_0</span> <span class="op">=</span> <span class="number">7</span>,
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;8 - PIO0_IRQ_1&quot;</span>]</span>
@@ -325,39 +283,65 @@
     <span class="ident">PIO1_IRQ_0</span> <span class="op">=</span> <span class="number">9</span>,
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;10 - PIO1_IRQ_1&quot;</span>]</span>
     <span class="ident">PIO1_IRQ_1</span> <span class="op">=</span> <span class="number">10</span>,
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;11 - DMA_IRQ_0&quot;</span>]</span>
+    <span class="ident">DMA_IRQ_0</span> <span class="op">=</span> <span class="number">11</span>,
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;12 - DMA_IRQ_1&quot;</span>]</span>
+    <span class="ident">DMA_IRQ_1</span> <span class="op">=</span> <span class="number">12</span>,
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;13 - IO_IRQ_BANK0&quot;</span>]</span>
+    <span class="ident">IO_IRQ_BANK0</span> <span class="op">=</span> <span class="number">13</span>,
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;14 - IO_IRQ_QSPI&quot;</span>]</span>
+    <span class="ident">IO_IRQ_QSPI</span> <span class="op">=</span> <span class="number">14</span>,
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;15 - SIO_IRQ_PROC0&quot;</span>]</span>
     <span class="ident">SIO_IRQ_PROC0</span> <span class="op">=</span> <span class="number">15</span>,
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;16 - SIO_IRQ_PROC1&quot;</span>]</span>
     <span class="ident">SIO_IRQ_PROC1</span> <span class="op">=</span> <span class="number">16</span>,
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;17 - CLOCKS_IRQ&quot;</span>]</span>
+    <span class="ident">CLOCKS_IRQ</span> <span class="op">=</span> <span class="number">17</span>,
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;18 - SPI0_IRQ&quot;</span>]</span>
+    <span class="ident">SPI0_IRQ</span> <span class="op">=</span> <span class="number">18</span>,
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;19 - SPI1_IRQ&quot;</span>]</span>
+    <span class="ident">SPI1_IRQ</span> <span class="op">=</span> <span class="number">19</span>,
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;20 - UART0_IRQ&quot;</span>]</span>
+    <span class="ident">UART0_IRQ</span> <span class="op">=</span> <span class="number">20</span>,
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;21 - UART1_IRQ&quot;</span>]</span>
+    <span class="ident">UART1_IRQ</span> <span class="op">=</span> <span class="number">21</span>,
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;22 - ADC_IRQ_FIFO&quot;</span>]</span>
+    <span class="ident">ADC_IRQ_FIFO</span> <span class="op">=</span> <span class="number">22</span>,
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;23 - I2C0_IRQ&quot;</span>]</span>
+    <span class="ident">I2C0_IRQ</span> <span class="op">=</span> <span class="number">23</span>,
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;24 - I2C1_IRQ&quot;</span>]</span>
+    <span class="ident">I2C1_IRQ</span> <span class="op">=</span> <span class="number">24</span>,
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;25 - RTC_IRQ&quot;</span>]</span>
+    <span class="ident">RTC_IRQ</span> <span class="op">=</span> <span class="number">25</span>,
 }
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;rt&quot;</span>)]</span>
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
-    <span class="kw">fn</span> <span class="ident">XIP_IRQ</span>();
-    <span class="kw">fn</span> <span class="ident">CLOCKS_IRQ</span>();
-    <span class="kw">fn</span> <span class="ident">IO_IRQ_BANK0</span>();
-    <span class="kw">fn</span> <span class="ident">IO_IRQ_QSPI</span>();
-    <span class="kw">fn</span> <span class="ident">UART0_IRQ</span>();
-    <span class="kw">fn</span> <span class="ident">UART1_IRQ</span>();
-    <span class="kw">fn</span> <span class="ident">SPI0_IRQ</span>();
-    <span class="kw">fn</span> <span class="ident">SPI1_IRQ</span>();
-    <span class="kw">fn</span> <span class="ident">I2C0_IRQ</span>();
-    <span class="kw">fn</span> <span class="ident">I2C1_IRQ</span>();
-    <span class="kw">fn</span> <span class="ident">ADC_IRQ_FIFO</span>();
-    <span class="kw">fn</span> <span class="ident">PWM_IRQ_WRAP</span>();
     <span class="kw">fn</span> <span class="ident">TIMER_IRQ_0</span>();
     <span class="kw">fn</span> <span class="ident">TIMER_IRQ_1</span>();
     <span class="kw">fn</span> <span class="ident">TIMER_IRQ_2</span>();
     <span class="kw">fn</span> <span class="ident">TIMER_IRQ_3</span>();
-    <span class="kw">fn</span> <span class="ident">RTC_IRQ</span>();
-    <span class="kw">fn</span> <span class="ident">DMA_IRQ_0</span>();
-    <span class="kw">fn</span> <span class="ident">DMA_IRQ_1</span>();
+    <span class="kw">fn</span> <span class="ident">PWM_IRQ_WRAP</span>();
     <span class="kw">fn</span> <span class="ident">USBCTRL_IRQ</span>();
+    <span class="kw">fn</span> <span class="ident">XIP_IRQ</span>();
     <span class="kw">fn</span> <span class="ident">PIO0_IRQ_0</span>();
     <span class="kw">fn</span> <span class="ident">PIO0_IRQ_1</span>();
     <span class="kw">fn</span> <span class="ident">PIO1_IRQ_0</span>();
     <span class="kw">fn</span> <span class="ident">PIO1_IRQ_1</span>();
+    <span class="kw">fn</span> <span class="ident">DMA_IRQ_0</span>();
+    <span class="kw">fn</span> <span class="ident">DMA_IRQ_1</span>();
+    <span class="kw">fn</span> <span class="ident">IO_IRQ_BANK0</span>();
+    <span class="kw">fn</span> <span class="ident">IO_IRQ_QSPI</span>();
     <span class="kw">fn</span> <span class="ident">SIO_IRQ_PROC0</span>();
     <span class="kw">fn</span> <span class="ident">SIO_IRQ_PROC1</span>();
+    <span class="kw">fn</span> <span class="ident">CLOCKS_IRQ</span>();
+    <span class="kw">fn</span> <span class="ident">SPI0_IRQ</span>();
+    <span class="kw">fn</span> <span class="ident">SPI1_IRQ</span>();
+    <span class="kw">fn</span> <span class="ident">UART0_IRQ</span>();
+    <span class="kw">fn</span> <span class="ident">UART1_IRQ</span>();
+    <span class="kw">fn</span> <span class="ident">ADC_IRQ_FIFO</span>();
+    <span class="kw">fn</span> <span class="ident">I2C0_IRQ</span>();
+    <span class="kw">fn</span> <span class="ident">I2C1_IRQ</span>();
+    <span class="kw">fn</span> <span class="ident">RTC_IRQ</span>();
 }
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">pub</span> <span class="ident">union</span> <span class="ident">Vector</span> {
@@ -368,49 +352,7 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="attribute">#[<span class="ident">link_section</span> <span class="op">=</span> <span class="string">&quot;.vector_table.interrupts&quot;</span>]</span>
 <span class="attribute">#[<span class="ident">no_mangle</span>]</span>
-<span class="kw">pub</span> <span class="kw">static</span> <span class="ident">__INTERRUPTS</span>: [<span class="ident">Vector</span>; <span class="number">42</span>] <span class="op">=</span> [
-    <span class="ident">Vector</span> { <span class="ident">_reserved</span>: <span class="number">0</span> },
-    <span class="ident">Vector</span> { <span class="ident">_reserved</span>: <span class="number">0</span> },
-    <span class="ident">Vector</span> { <span class="ident">_reserved</span>: <span class="number">0</span> },
-    <span class="ident">Vector</span> { <span class="ident">_reserved</span>: <span class="number">0</span> },
-    <span class="ident">Vector</span> { <span class="ident">_reserved</span>: <span class="number">0</span> },
-    <span class="ident">Vector</span> { <span class="ident">_reserved</span>: <span class="number">0</span> },
-    <span class="ident">Vector</span> { <span class="ident">_handler</span>: <span class="ident">XIP_IRQ</span> },
-    <span class="ident">Vector</span> { <span class="ident">_reserved</span>: <span class="number">0</span> },
-    <span class="ident">Vector</span> { <span class="ident">_reserved</span>: <span class="number">0</span> },
-    <span class="ident">Vector</span> { <span class="ident">_reserved</span>: <span class="number">0</span> },
-    <span class="ident">Vector</span> { <span class="ident">_reserved</span>: <span class="number">0</span> },
-    <span class="ident">Vector</span> { <span class="ident">_reserved</span>: <span class="number">0</span> },
-    <span class="ident">Vector</span> { <span class="ident">_reserved</span>: <span class="number">0</span> },
-    <span class="ident">Vector</span> { <span class="ident">_reserved</span>: <span class="number">0</span> },
-    <span class="ident">Vector</span> { <span class="ident">_reserved</span>: <span class="number">0</span> },
-    <span class="ident">Vector</span> { <span class="ident">_reserved</span>: <span class="number">0</span> },
-    <span class="ident">Vector</span> { <span class="ident">_reserved</span>: <span class="number">0</span> },
-    <span class="ident">Vector</span> {
-        <span class="ident">_handler</span>: <span class="ident">CLOCKS_IRQ</span>,
-    },
-    <span class="ident">Vector</span> {
-        <span class="ident">_handler</span>: <span class="ident">IO_IRQ_BANK0</span>,
-    },
-    <span class="ident">Vector</span> {
-        <span class="ident">_handler</span>: <span class="ident">IO_IRQ_QSPI</span>,
-    },
-    <span class="ident">Vector</span> {
-        <span class="ident">_handler</span>: <span class="ident">UART0_IRQ</span>,
-    },
-    <span class="ident">Vector</span> {
-        <span class="ident">_handler</span>: <span class="ident">UART1_IRQ</span>,
-    },
-    <span class="ident">Vector</span> { <span class="ident">_handler</span>: <span class="ident">SPI0_IRQ</span> },
-    <span class="ident">Vector</span> { <span class="ident">_handler</span>: <span class="ident">SPI1_IRQ</span> },
-    <span class="ident">Vector</span> { <span class="ident">_handler</span>: <span class="ident">I2C0_IRQ</span> },
-    <span class="ident">Vector</span> { <span class="ident">_handler</span>: <span class="ident">I2C1_IRQ</span> },
-    <span class="ident">Vector</span> {
-        <span class="ident">_handler</span>: <span class="ident">ADC_IRQ_FIFO</span>,
-    },
-    <span class="ident">Vector</span> {
-        <span class="ident">_handler</span>: <span class="ident">PWM_IRQ_WRAP</span>,
-    },
+<span class="kw">pub</span> <span class="kw">static</span> <span class="ident">__INTERRUPTS</span>: [<span class="ident">Vector</span>; <span class="number">26</span>] <span class="op">=</span> [
     <span class="ident">Vector</span> {
         <span class="ident">_handler</span>: <span class="ident">TIMER_IRQ_0</span>,
     },
@@ -423,16 +365,13 @@
     <span class="ident">Vector</span> {
         <span class="ident">_handler</span>: <span class="ident">TIMER_IRQ_3</span>,
     },
-    <span class="ident">Vector</span> { <span class="ident">_handler</span>: <span class="ident">RTC_IRQ</span> },
     <span class="ident">Vector</span> {
-        <span class="ident">_handler</span>: <span class="ident">DMA_IRQ_0</span>,
-    },
-    <span class="ident">Vector</span> {
-        <span class="ident">_handler</span>: <span class="ident">DMA_IRQ_1</span>,
+        <span class="ident">_handler</span>: <span class="ident">PWM_IRQ_WRAP</span>,
     },
     <span class="ident">Vector</span> {
         <span class="ident">_handler</span>: <span class="ident">USBCTRL_IRQ</span>,
     },
+    <span class="ident">Vector</span> { <span class="ident">_handler</span>: <span class="ident">XIP_IRQ</span> },
     <span class="ident">Vector</span> {
         <span class="ident">_handler</span>: <span class="ident">PIO0_IRQ_0</span>,
     },
@@ -446,11 +385,40 @@
         <span class="ident">_handler</span>: <span class="ident">PIO1_IRQ_1</span>,
     },
     <span class="ident">Vector</span> {
+        <span class="ident">_handler</span>: <span class="ident">DMA_IRQ_0</span>,
+    },
+    <span class="ident">Vector</span> {
+        <span class="ident">_handler</span>: <span class="ident">DMA_IRQ_1</span>,
+    },
+    <span class="ident">Vector</span> {
+        <span class="ident">_handler</span>: <span class="ident">IO_IRQ_BANK0</span>,
+    },
+    <span class="ident">Vector</span> {
+        <span class="ident">_handler</span>: <span class="ident">IO_IRQ_QSPI</span>,
+    },
+    <span class="ident">Vector</span> {
         <span class="ident">_handler</span>: <span class="ident">SIO_IRQ_PROC0</span>,
     },
     <span class="ident">Vector</span> {
         <span class="ident">_handler</span>: <span class="ident">SIO_IRQ_PROC1</span>,
     },
+    <span class="ident">Vector</span> {
+        <span class="ident">_handler</span>: <span class="ident">CLOCKS_IRQ</span>,
+    },
+    <span class="ident">Vector</span> { <span class="ident">_handler</span>: <span class="ident">SPI0_IRQ</span> },
+    <span class="ident">Vector</span> { <span class="ident">_handler</span>: <span class="ident">SPI1_IRQ</span> },
+    <span class="ident">Vector</span> {
+        <span class="ident">_handler</span>: <span class="ident">UART0_IRQ</span>,
+    },
+    <span class="ident">Vector</span> {
+        <span class="ident">_handler</span>: <span class="ident">UART1_IRQ</span>,
+    },
+    <span class="ident">Vector</span> {
+        <span class="ident">_handler</span>: <span class="ident">ADC_IRQ_FIFO</span>,
+    },
+    <span class="ident">Vector</span> { <span class="ident">_handler</span>: <span class="ident">I2C0_IRQ</span> },
+    <span class="ident">Vector</span> { <span class="ident">_handler</span>: <span class="ident">I2C1_IRQ</span> },
+    <span class="ident">Vector</span> { <span class="ident">_handler</span>: <span class="ident">RTC_IRQ</span> },
 ];
 <span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">cortex_m</span>::<span class="ident">interrupt</span>::<span class="ident">InterruptNumber</span> <span class="kw">for</span> <span class="ident">Interrupt</span> {
     <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>

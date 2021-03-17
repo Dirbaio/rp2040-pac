@@ -74,6 +74,16 @@
 <span id="71">71</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">generic</span>::<span class="kw-2">*</span>;
+<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Pad control register&quot;</span>]</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GpioQspiSclkDrive</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">GpioQspiSclkDrive</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">_2MA</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">_4MA</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">_8MA</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">_12MA</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
+}
 <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Voltage select. Per bank control&quot;</span>]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
@@ -83,16 +93,6 @@
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">_3V3</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Set voltage to 1.8V (DVDD &lt;= 1V8)&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">_1V8</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
-}
-<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Pad control register&quot;</span>]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GpioQspiSd2Drive</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">GpioQspiSd2Drive</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">_2MA</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">_4MA</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">_8MA</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">_12MA</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
 }
 <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Pad control register&quot;</span>]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
@@ -117,18 +117,8 @@
 <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Pad control register&quot;</span>]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GpioQspiSclkDrive</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">GpioQspiSclkDrive</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">_2MA</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">_4MA</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">_8MA</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">_12MA</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
-}
-<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Pad control register&quot;</span>]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GpioQspiSd1Drive</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">GpioQspiSd1Drive</span> {
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GpioQspiSd2Drive</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">GpioQspiSd2Drive</span> {
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">_2MA</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">_4MA</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">_8MA</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
@@ -139,6 +129,16 @@
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GpioQspiSd3Drive</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
 <span class="kw">impl</span> <span class="ident">GpioQspiSd3Drive</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">_2MA</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">_4MA</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">_8MA</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">_12MA</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
+}
+<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Pad control register&quot;</span>]</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GpioQspiSd1Drive</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">GpioQspiSd1Drive</span> {
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">_2MA</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">_4MA</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">_8MA</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
