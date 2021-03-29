@@ -1,1 +1,0 @@
-initSidebarItems({"struct":[["GpioQspiSclk","Pad control register"],["GpioQspiSd0","Pad control register"],["GpioQspiSd1","Pad control register"],["GpioQspiSd2","Pad control register"],["GpioQspiSd3","Pad control register"],["GpioQspiSs","Pad control register"],["VoltageSelect","Voltage select. Per bank control"]]});

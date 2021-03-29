@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["CtrlEnable","Crystal Oscillator Control"],["CtrlFreqRange","Crystal Oscillator Control"],["StatusFreqRange","Crystal Oscillator Status"]]});
+initSidebarItems({"struct":[["CtrlEnable",""],["CtrlFreqRange",""],["StatusFreqRange",""]]});

@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["Divmode","Control and status register"]]});
+initSidebarItems({"struct":[["Divmode",""]]});

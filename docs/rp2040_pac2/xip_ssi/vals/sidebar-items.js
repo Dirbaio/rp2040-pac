@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["Ctrlr0SpiFrf","Control register 0"],["Ctrlr0Tmod","Control register 0"],["SpiCtrlr0InstL","SPI control"],["SpiCtrlr0TransType","SPI control"]]});
+initSidebarItems({"struct":[["Ctrlr0SpiFrf",""],["Ctrlr0Tmod",""],["SpiCtrlr0InstL",""],["SpiCtrlr0TransType",""]]});
