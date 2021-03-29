@@ -46,20 +46,11 @@
 <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">generic</span>::<span class="kw-2">*</span>;
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SniffCtrlCalc</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">SniffCtrlCalc</span> {
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Calculate a CRC-32 (IEEE802.3 polynomial)&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CRC32</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Calculate a CRC-32 (IEEE802.3 polynomial) with bit reversed data&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CRC32R</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Calculate a CRC-16-CCITT&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CRC16</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Calculate a CRC-16-CCITT with bit reversed data&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CRC16R</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;XOR reduction over all data. == 1 if the total 1 population count is odd.&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EVEN</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x0e</span>);
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Calculate a simple 32-bit checksum (addition with a 32 bit accumulator)&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SUM</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x0f</span>);
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DataSize</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">DataSize</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIZE_BYTE</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIZE_HALFWORD</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIZE_WORD</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
 }
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
@@ -78,11 +69,20 @@
 }
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DataSize</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
-<span class="kw">impl</span> <span class="ident">DataSize</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIZE_BYTE</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIZE_HALFWORD</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIZE_WORD</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SniffCtrlCalc</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="kw">impl</span> <span class="ident">SniffCtrlCalc</span> {
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Calculate a CRC-32 (IEEE802.3 polynomial)&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CRC32</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Calculate a CRC-32 (IEEE802.3 polynomial) with bit reversed data&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CRC32R</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x01</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Calculate a CRC-16-CCITT&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CRC16</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x02</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Calculate a CRC-16-CCITT with bit reversed data&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CRC16R</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x03</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;XOR reduction over all data. == 1 if the total 1 population count is odd.&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EVEN</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x0e</span>);
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Calculate a simple 32-bit checksum (addition with a 32 bit accumulator)&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SUM</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x0f</span>);
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><section class="footer"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="rp2040_pac2" data-search-js="../../../search-index.js"></div>

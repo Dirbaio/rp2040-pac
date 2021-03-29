@@ -127,6 +127,53 @@
 <span id="124">124</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">generic</span>::<span class="kw-2">*</span>;
+<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Chip reset control and status&quot;</span>]</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ChipReset</span>(<span class="kw">pub</span> <span class="ident">u32</span>);
+<span class="kw">impl</span> <span class="ident">ChipReset</span> {
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;This is set by psm_restart from the debugger. Its purpose is to branch bootcode to a safe mode when the debugger has issued a psm_restart in order to recover from a boot lock-up. In the safe mode the debugger can repair the boot code, clear this flag then reboot the processor.&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">psm_restart_flag</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+        <span class="kw">let</span> <span class="ident">val</span> <span class="op">=</span> (<span class="self">self</span>.<span class="number">0</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">24u32</span>) <span class="op">&amp;</span> <span class="number">0x01</span>;
+        <span class="ident">val</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span>
+    }
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;This is set by psm_restart from the debugger. Its purpose is to branch bootcode to a safe mode when the debugger has issued a psm_restart in order to recover from a boot lock-up. In the safe mode the debugger can repair the boot code, clear this flag then reboot the processor.&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_psm_restart_flag</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">val</span>: <span class="ident">bool</span>) {
+        <span class="self">self</span>.<span class="number">0</span> <span class="op">=</span> (<span class="self">self</span>.<span class="number">0</span> <span class="op">&amp;</span> <span class="op">!</span>(<span class="number">0x01</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">24u32</span>)) <span class="op">|</span> (((<span class="ident">val</span> <span class="kw">as</span> <span class="ident">u32</span>) <span class="op">&amp;</span> <span class="number">0x01</span>) <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">24u32</span>);
+    }
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Last reset was from the debug port&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">had_psm_restart</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+        <span class="kw">let</span> <span class="ident">val</span> <span class="op">=</span> (<span class="self">self</span>.<span class="number">0</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">20u32</span>) <span class="op">&amp;</span> <span class="number">0x01</span>;
+        <span class="ident">val</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span>
+    }
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Last reset was from the debug port&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_had_psm_restart</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">val</span>: <span class="ident">bool</span>) {
+        <span class="self">self</span>.<span class="number">0</span> <span class="op">=</span> (<span class="self">self</span>.<span class="number">0</span> <span class="op">&amp;</span> <span class="op">!</span>(<span class="number">0x01</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">20u32</span>)) <span class="op">|</span> (((<span class="ident">val</span> <span class="kw">as</span> <span class="ident">u32</span>) <span class="op">&amp;</span> <span class="number">0x01</span>) <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">20u32</span>);
+    }
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Last reset was from the RUN pin&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">had_run</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+        <span class="kw">let</span> <span class="ident">val</span> <span class="op">=</span> (<span class="self">self</span>.<span class="number">0</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">16u32</span>) <span class="op">&amp;</span> <span class="number">0x01</span>;
+        <span class="ident">val</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span>
+    }
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Last reset was from the RUN pin&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_had_run</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">val</span>: <span class="ident">bool</span>) {
+        <span class="self">self</span>.<span class="number">0</span> <span class="op">=</span> (<span class="self">self</span>.<span class="number">0</span> <span class="op">&amp;</span> <span class="op">!</span>(<span class="number">0x01</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">16u32</span>)) <span class="op">|</span> (((<span class="ident">val</span> <span class="kw">as</span> <span class="ident">u32</span>) <span class="op">&amp;</span> <span class="number">0x01</span>) <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">16u32</span>);
+    }
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Last reset was from the power-on reset or brown-out detection blocks&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">had_por</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+        <span class="kw">let</span> <span class="ident">val</span> <span class="op">=</span> (<span class="self">self</span>.<span class="number">0</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">8u32</span>) <span class="op">&amp;</span> <span class="number">0x01</span>;
+        <span class="ident">val</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span>
+    }
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Last reset was from the power-on reset or brown-out detection blocks&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_had_por</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">val</span>: <span class="ident">bool</span>) {
+        <span class="self">self</span>.<span class="number">0</span> <span class="op">=</span> (<span class="self">self</span>.<span class="number">0</span> <span class="op">&amp;</span> <span class="op">!</span>(<span class="number">0x01</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">8u32</span>)) <span class="op">|</span> (((<span class="ident">val</span> <span class="kw">as</span> <span class="ident">u32</span>) <span class="op">&amp;</span> <span class="number">0x01</span>) <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">8u32</span>);
+    }
+}
+<span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">ChipReset</span> {
+    <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ChipReset</span> {
+        <span class="ident">ChipReset</span>(<span class="number">0</span>)
+    }
+}
 <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Voltage regulator control and status&quot;</span>]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
@@ -201,53 +248,6 @@
 <span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">Bod</span> {
     <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Bod</span> {
         <span class="ident">Bod</span>(<span class="number">0</span>)
-    }
-}
-<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Chip reset control and status&quot;</span>]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ChipReset</span>(<span class="kw">pub</span> <span class="ident">u32</span>);
-<span class="kw">impl</span> <span class="ident">ChipReset</span> {
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;This is set by psm_restart from the debugger. Its purpose is to branch bootcode to a safe mode when the debugger has issued a psm_restart in order to recover from a boot lock-up. In the safe mode the debugger can repair the boot code, clear this flag then reboot the processor.&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">psm_restart_flag</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-        <span class="kw">let</span> <span class="ident">val</span> <span class="op">=</span> (<span class="self">self</span>.<span class="number">0</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">24u32</span>) <span class="op">&amp;</span> <span class="number">0x01</span>;
-        <span class="ident">val</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span>
-    }
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;This is set by psm_restart from the debugger. Its purpose is to branch bootcode to a safe mode when the debugger has issued a psm_restart in order to recover from a boot lock-up. In the safe mode the debugger can repair the boot code, clear this flag then reboot the processor.&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_psm_restart_flag</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">val</span>: <span class="ident">bool</span>) {
-        <span class="self">self</span>.<span class="number">0</span> <span class="op">=</span> (<span class="self">self</span>.<span class="number">0</span> <span class="op">&amp;</span> <span class="op">!</span>(<span class="number">0x01</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">24u32</span>)) <span class="op">|</span> (((<span class="ident">val</span> <span class="kw">as</span> <span class="ident">u32</span>) <span class="op">&amp;</span> <span class="number">0x01</span>) <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">24u32</span>);
-    }
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Last reset was from the debug port&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">had_psm_restart</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-        <span class="kw">let</span> <span class="ident">val</span> <span class="op">=</span> (<span class="self">self</span>.<span class="number">0</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">20u32</span>) <span class="op">&amp;</span> <span class="number">0x01</span>;
-        <span class="ident">val</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span>
-    }
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Last reset was from the debug port&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_had_psm_restart</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">val</span>: <span class="ident">bool</span>) {
-        <span class="self">self</span>.<span class="number">0</span> <span class="op">=</span> (<span class="self">self</span>.<span class="number">0</span> <span class="op">&amp;</span> <span class="op">!</span>(<span class="number">0x01</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">20u32</span>)) <span class="op">|</span> (((<span class="ident">val</span> <span class="kw">as</span> <span class="ident">u32</span>) <span class="op">&amp;</span> <span class="number">0x01</span>) <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">20u32</span>);
-    }
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Last reset was from the RUN pin&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">had_run</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-        <span class="kw">let</span> <span class="ident">val</span> <span class="op">=</span> (<span class="self">self</span>.<span class="number">0</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">16u32</span>) <span class="op">&amp;</span> <span class="number">0x01</span>;
-        <span class="ident">val</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span>
-    }
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Last reset was from the RUN pin&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_had_run</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">val</span>: <span class="ident">bool</span>) {
-        <span class="self">self</span>.<span class="number">0</span> <span class="op">=</span> (<span class="self">self</span>.<span class="number">0</span> <span class="op">&amp;</span> <span class="op">!</span>(<span class="number">0x01</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">16u32</span>)) <span class="op">|</span> (((<span class="ident">val</span> <span class="kw">as</span> <span class="ident">u32</span>) <span class="op">&amp;</span> <span class="number">0x01</span>) <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">16u32</span>);
-    }
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Last reset was from the power-on reset or brown-out detection blocks&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">had_por</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-        <span class="kw">let</span> <span class="ident">val</span> <span class="op">=</span> (<span class="self">self</span>.<span class="number">0</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">8u32</span>) <span class="op">&amp;</span> <span class="number">0x01</span>;
-        <span class="ident">val</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span>
-    }
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Last reset was from the power-on reset or brown-out detection blocks&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_had_por</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">val</span>: <span class="ident">bool</span>) {
-        <span class="self">self</span>.<span class="number">0</span> <span class="op">=</span> (<span class="self">self</span>.<span class="number">0</span> <span class="op">&amp;</span> <span class="op">!</span>(<span class="number">0x01</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">8u32</span>)) <span class="op">|</span> (((<span class="ident">val</span> <span class="kw">as</span> <span class="ident">u32</span>) <span class="op">&amp;</span> <span class="number">0x01</span>) <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">8u32</span>);
-    }
-}
-<span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">ChipReset</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ChipReset</span> {
-        <span class="ident">ChipReset</span>(<span class="number">0</span>)
     }
 }
 </pre></div>

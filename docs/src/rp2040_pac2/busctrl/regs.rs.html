@@ -111,6 +111,66 @@
 <span id="108">108</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">generic</span>::<span class="kw-2">*</span>;
+<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Bus priority acknowledge&quot;</span>]</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">BusPriorityAck</span>(<span class="kw">pub</span> <span class="ident">u32</span>);
+<span class="kw">impl</span> <span class="ident">BusPriorityAck</span> {
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Goes to 1 once all arbiters have registered the new global priority levels. Arbiters update their local priority when servicing a new nonsequential access. In normal circumstances this will happen almost immediately.&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">bus_priority_ack</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+        <span class="kw">let</span> <span class="ident">val</span> <span class="op">=</span> (<span class="self">self</span>.<span class="number">0</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">0u32</span>) <span class="op">&amp;</span> <span class="number">0x01</span>;
+        <span class="ident">val</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span>
+    }
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Goes to 1 once all arbiters have registered the new global priority levels. Arbiters update their local priority when servicing a new nonsequential access. In normal circumstances this will happen almost immediately.&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_bus_priority_ack</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">val</span>: <span class="ident">bool</span>) {
+        <span class="self">self</span>.<span class="number">0</span> <span class="op">=</span> (<span class="self">self</span>.<span class="number">0</span> <span class="op">&amp;</span> <span class="op">!</span>(<span class="number">0x01</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">0u32</span>)) <span class="op">|</span> (((<span class="ident">val</span> <span class="kw">as</span> <span class="ident">u32</span>) <span class="op">&amp;</span> <span class="number">0x01</span>) <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">0u32</span>);
+    }
+}
+<span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">BusPriorityAck</span> {
+    <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BusPriorityAck</span> {
+        <span class="ident">BusPriorityAck</span>(<span class="number">0</span>)
+    }
+}
+<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Bus fabric performance event select for PERFCTR1&quot;</span>]</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Perfsel</span>(<span class="kw">pub</span> <span class="ident">u32</span>);
+<span class="kw">impl</span> <span class="ident">Perfsel</span> {
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Select a performance event for PERFCTR1&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">perfsel</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u8</span> {
+        <span class="kw">let</span> <span class="ident">val</span> <span class="op">=</span> (<span class="self">self</span>.<span class="number">0</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">0u32</span>) <span class="op">&amp;</span> <span class="number">0x1f</span>;
+        <span class="ident">val</span> <span class="kw">as</span> <span class="ident">u8</span>
+    }
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Select a performance event for PERFCTR1&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_perfsel</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">val</span>: <span class="ident">u8</span>) {
+        <span class="self">self</span>.<span class="number">0</span> <span class="op">=</span> (<span class="self">self</span>.<span class="number">0</span> <span class="op">&amp;</span> <span class="op">!</span>(<span class="number">0x1f</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">0u32</span>)) <span class="op">|</span> (((<span class="ident">val</span> <span class="kw">as</span> <span class="ident">u32</span>) <span class="op">&amp;</span> <span class="number">0x1f</span>) <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">0u32</span>);
+    }
+}
+<span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">Perfsel</span> {
+    <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Perfsel</span> {
+        <span class="ident">Perfsel</span>(<span class="number">0</span>)
+    }
+}
+<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Bus fabric performance counter 1&quot;</span>]</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Perfctr</span>(<span class="kw">pub</span> <span class="ident">u32</span>);
+<span class="kw">impl</span> <span class="ident">Perfctr</span> {
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Busfabric saturating performance counter 1 Count some event signal from the busfabric arbiters. Write any value to clear. Select an event to count using PERFSEL1&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">perfctr</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
+        <span class="kw">let</span> <span class="ident">val</span> <span class="op">=</span> (<span class="self">self</span>.<span class="number">0</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">0u32</span>) <span class="op">&amp;</span> <span class="number">0x00ff_ffff</span>;
+        <span class="ident">val</span> <span class="kw">as</span> <span class="ident">u32</span>
+    }
+    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Busfabric saturating performance counter 1 Count some event signal from the busfabric arbiters. Write any value to clear. Select an event to count using PERFSEL1&quot;</span>]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_perfctr</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">val</span>: <span class="ident">u32</span>) {
+        <span class="self">self</span>.<span class="number">0</span> <span class="op">=</span> (<span class="self">self</span>.<span class="number">0</span> <span class="op">&amp;</span> <span class="op">!</span>(<span class="number">0x00ff_ffff</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">0u32</span>)) <span class="op">|</span> (((<span class="ident">val</span> <span class="kw">as</span> <span class="ident">u32</span>) <span class="op">&amp;</span> <span class="number">0x00ff_ffff</span>) <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">0u32</span>);
+    }
+}
+<span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">Perfctr</span> {
+    <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Perfctr</span> {
+        <span class="ident">Perfctr</span>(<span class="number">0</span>)
+    }
+}
 <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Set the priority of each master for bus arbitration.&quot;</span>]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
@@ -156,66 +216,6 @@
 <span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">BusPriority</span> {
     <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BusPriority</span> {
         <span class="ident">BusPriority</span>(<span class="number">0</span>)
-    }
-}
-<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Bus priority acknowledge&quot;</span>]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">BusPriorityAck</span>(<span class="kw">pub</span> <span class="ident">u32</span>);
-<span class="kw">impl</span> <span class="ident">BusPriorityAck</span> {
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Goes to 1 once all arbiters have registered the new global priority levels. Arbiters update their local priority when servicing a new nonsequential access. In normal circumstances this will happen almost immediately.&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">bus_priority_ack</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-        <span class="kw">let</span> <span class="ident">val</span> <span class="op">=</span> (<span class="self">self</span>.<span class="number">0</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">0u32</span>) <span class="op">&amp;</span> <span class="number">0x01</span>;
-        <span class="ident">val</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span>
-    }
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Goes to 1 once all arbiters have registered the new global priority levels. Arbiters update their local priority when servicing a new nonsequential access. In normal circumstances this will happen almost immediately.&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_bus_priority_ack</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">val</span>: <span class="ident">bool</span>) {
-        <span class="self">self</span>.<span class="number">0</span> <span class="op">=</span> (<span class="self">self</span>.<span class="number">0</span> <span class="op">&amp;</span> <span class="op">!</span>(<span class="number">0x01</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">0u32</span>)) <span class="op">|</span> (((<span class="ident">val</span> <span class="kw">as</span> <span class="ident">u32</span>) <span class="op">&amp;</span> <span class="number">0x01</span>) <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">0u32</span>);
-    }
-}
-<span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">BusPriorityAck</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BusPriorityAck</span> {
-        <span class="ident">BusPriorityAck</span>(<span class="number">0</span>)
-    }
-}
-<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Bus fabric performance event select for PERFCTR3&quot;</span>]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Perfsel</span>(<span class="kw">pub</span> <span class="ident">u32</span>);
-<span class="kw">impl</span> <span class="ident">Perfsel</span> {
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Select a performance event for PERFCTR3&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">perfsel</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u8</span> {
-        <span class="kw">let</span> <span class="ident">val</span> <span class="op">=</span> (<span class="self">self</span>.<span class="number">0</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">0u32</span>) <span class="op">&amp;</span> <span class="number">0x1f</span>;
-        <span class="ident">val</span> <span class="kw">as</span> <span class="ident">u8</span>
-    }
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Select a performance event for PERFCTR3&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_perfsel</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">val</span>: <span class="ident">u8</span>) {
-        <span class="self">self</span>.<span class="number">0</span> <span class="op">=</span> (<span class="self">self</span>.<span class="number">0</span> <span class="op">&amp;</span> <span class="op">!</span>(<span class="number">0x1f</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">0u32</span>)) <span class="op">|</span> (((<span class="ident">val</span> <span class="kw">as</span> <span class="ident">u32</span>) <span class="op">&amp;</span> <span class="number">0x1f</span>) <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">0u32</span>);
-    }
-}
-<span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">Perfsel</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Perfsel</span> {
-        <span class="ident">Perfsel</span>(<span class="number">0</span>)
-    }
-}
-<span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Bus fabric performance counter 3&quot;</span>]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Perfctr</span>(<span class="kw">pub</span> <span class="ident">u32</span>);
-<span class="kw">impl</span> <span class="ident">Perfctr</span> {
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Busfabric saturating performance counter 3 Count some event signal from the busfabric arbiters. Write any value to clear. Select an event to count using PERFSEL3&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">perfctr</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
-        <span class="kw">let</span> <span class="ident">val</span> <span class="op">=</span> (<span class="self">self</span>.<span class="number">0</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">0u32</span>) <span class="op">&amp;</span> <span class="number">0x00ff_ffff</span>;
-        <span class="ident">val</span> <span class="kw">as</span> <span class="ident">u32</span>
-    }
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Busfabric saturating performance counter 3 Count some event signal from the busfabric arbiters. Write any value to clear. Select an event to count using PERFSEL3&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_perfctr</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">val</span>: <span class="ident">u32</span>) {
-        <span class="self">self</span>.<span class="number">0</span> <span class="op">=</span> (<span class="self">self</span>.<span class="number">0</span> <span class="op">&amp;</span> <span class="op">!</span>(<span class="number">0x00ff_ffff</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">0u32</span>)) <span class="op">|</span> (((<span class="ident">val</span> <span class="kw">as</span> <span class="ident">u32</span>) <span class="op">&amp;</span> <span class="number">0x00ff_ffff</span>) <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">0u32</span>);
-    }
-}
-<span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">Perfctr</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Perfctr</span> {
-        <span class="ident">Perfctr</span>(<span class="number">0</span>)
     }
 }
 </pre></div>

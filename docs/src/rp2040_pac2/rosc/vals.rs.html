@@ -43,9 +43,10 @@
 }
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Div</span>(<span class="kw">pub</span> <span class="ident">u16</span>);
-<span class="kw">impl</span> <span class="ident">Div</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PASS</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x0aa0</span>);
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CtrlEnable</span>(<span class="kw">pub</span> <span class="ident">u16</span>);
+<span class="kw">impl</span> <span class="ident">CtrlEnable</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DISABLE</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x0d1e</span>);
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ENABLE</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x0fab</span>);
 }
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
@@ -55,10 +56,9 @@
 }
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CtrlEnable</span>(<span class="kw">pub</span> <span class="ident">u16</span>);
-<span class="kw">impl</span> <span class="ident">CtrlEnable</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DISABLE</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x0d1e</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ENABLE</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x0fab</span>);
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Div</span>(<span class="kw">pub</span> <span class="ident">u16</span>);
+<span class="kw">impl</span> <span class="ident">Div</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PASS</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="number">0x0aa0</span>);
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><section class="footer"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="rp2040_pac2" data-search-js="../../../search-index.js"></div>
